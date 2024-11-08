@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\UserController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -13,16 +15,6 @@ Route::view('/', 'welcome');
 //     return (object)[1, 2, 3];
 // });
 
-// Route::name('users.')->prefix('/users')->group(function () {
-//     Route::get('/search', function () {
-//         return 'User Search';
-//     })->name('search');
-
-//     Route::get('/store', function () {
-//         return 'User Store';
-//     })->name('store');
-// });
-
 Route::get('/redirect', function () {
     return redirect()->route('users.search');
 });
@@ -33,8 +25,14 @@ Route::fallback(function () {
     return "NOT FOUND";
 });
 
-Route::prefix('/users')->group(function () {
-    Route::get('{id?}', function ($id = null) {
-        return "User ID: $id";
-    });
+Route::name('users.')->prefix('/users')->group(function () {
+    Route::get('/search', [UserController::class, 'search'])->name('search');
+
+    Route::get('/store', [UserController::class, 'store'])->name('store');
 });
+
+Route::prefix('/users')->group(function () {
+    Route::get('{id?}', [UserController::class, 'show'])->name('users.show');
+});
+
+Route::get('/register', [UserController::class, 'register'])->name('users.register');
