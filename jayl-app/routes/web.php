@@ -25,7 +25,7 @@ Route::prefix('/users')->name('users.')->group(function () {
         return "user ID: $id";
     });
 
-    Route::get('/',function(){
+    Route::get('/', function () {
         return 'index user';
     });
 });
@@ -40,6 +40,6 @@ Route::redirect('/from', ('/to'));
 //     return 'NOT FOUND';
 // });
 
-Route::get('/register', function(Request $request){
+Route::get('/register', function (Request $request) {
     dd($request);
 });
