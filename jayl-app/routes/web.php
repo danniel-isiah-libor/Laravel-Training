@@ -1,7 +1,6 @@
 <?php
 
-
-
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -15,22 +14,23 @@ use Symfony\Component\HttpFoundation\Request;
 //});
 
 Route::prefix('/users')->name('users.')->group(function () {
-    Route::get('/search', function () {
-        // Matches The "/admin/users" URL
-        return 'user search';
-    })->name('search');
+    Route::get('/search', [UserController::class, 'search'])->name('search');
 
-    Route::get('/store', function () {
-        return 'User Store';
-    })->name('store');
 
-    Route::get('{id}', function ($id = null) {
-        return "user ID: $id";
-    });
+    Route::get('/store', [UserController::class, 'store'])->name('store');
+    // Route::get('/store', function () {
+    //     return 'User Store';
+    // })->name('store');
 
-    Route::get('/', function () {
-        return 'index user';
-    });
+    Route::get('{id}', [UserController::class, 'show'])->name('users.show');
+    // Route::get('{id}', function ($id = null) {
+    //     return "user ID: $id";
+    // });
+
+  
+    // Route::get('/', function () {
+    //     return 'index user';
+    // });
 });
 
 Route::get('/redirect', function () {
@@ -43,7 +43,8 @@ Route::redirect('/from', ('/to'));
 //     return 'NOT FOUND';
 // });
 
-Route::get('/register', function (Request $request) {
-    $parameters = $request->query('name');
-    dd($parameters);
-});
+Route::get('/register', [UserController::class, 'register'], 'register');
+// Route::get('/register', function (Request $request) {
+//     $parameters = $request->all();
+//     dd($parameters);
+// });
