@@ -1,6 +1,8 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 //Route::get('/', function () {
 //    return view('welcome');
@@ -35,5 +37,10 @@ Route::prefix('/users')->group(function() {
     Route::get('{id?}', function ($id=null) {
         return "User ID: $id";
     });
+});
+
+Route::get('/register', function (Request $request) {
+    $parameters = $request->query('name');
+    dd($parameters);
 });
 
