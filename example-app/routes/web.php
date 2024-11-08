@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Http\Request;  
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -59,3 +59,19 @@ Route::prefix('/users')->group(function() {
 });
 
 
+Route::get('/register', function (Request $request) {
+    
+    
+
+    //$name = $request->query('name','james');
+    //dd($request); 
+    //  $name = $request->query('name', 'Helen');
+    //  dd($name); 
+    //$parameter = $request->boolean('is_active'); 
+    // $request->merge(['user_id' => 1]);
+    // dd($request->all); 
+
+    //dd($request); 
+});
+
+ 
