@@ -1,12 +1,57 @@
 <?php
+
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;  
 use Illuminate\Support\Facades\Route;
+
+ 
+Route::view('/', 'welcome');
+ 
+Route::get('/redirect', function () {
+    return redirect()->route('users.search');
+});
+
+Route::redirect('/from', '/to');
+
+Route::fallback(function () {
+    return "NOT FOUND";
+});
+
+Route::name('users.')->prefix('/users')->group(function () {
+    Route::get('/search', [UserController::class, 'search'])->name('search');
+
+    Route::get('/store', [UserController::class, 'store'])->name('store');
+});
+
+Route::prefix('/users')->group(function () {
+    Route::get('{id?}', [UserController::class, 'show'])->name('users.show');
+});
+
+Route::get('/register', [UserController::class, 'register'])->name('users.register');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Route::get('/', function () {
 //     return view('welcome');
 // });
 
-Route::view('/','welcome');
+// Route::view('/','welcome');
 
  
 // Route::get('/', function () {
@@ -17,21 +62,16 @@ Route::view('/','welcome');
 // });
 
 
-Route::name('users.')->prefix('users')->group(function(){
+// Route::name('users.')->prefix('users')->group(function(){
 
-    Route::get('/search', function () {
-         return 'User Search long method';
-    })->name('search');
-
-    Route::get('/store', function () {
-        return 'User store mo';
-   })->name('store');
-
-   Route::get('/guest', function () {
-    return 'guest form ';
-})->name('guest');
+//     Route::get('/search', [UserController::class, 'search'])->name('search'); 
+//     Route::get('/store', [UserController::class, 'store'])->name('store');
+//     Route::get('/guest', [UserController::class, 'guest'])->name('guest');
+//     Route::get('/register', [UserController::class, 'register'])->name('register');
    
-});
+// });
+
+ 
 
 //redirection
 // Route::get('/redirect' , function (){
@@ -40,9 +80,9 @@ Route::name('users.')->prefix('users')->group(function(){
 
 // // Route::redirect('/from', '/to');
 
-Route::fallback(function(){
-    return 'NOT FOUND';
-});
+// Route::fallback(function(){
+//     return 'NOT FOUND';
+// });
 // // Route::redirect('/from', route('users.search'));
 
 
@@ -51,27 +91,13 @@ Route::fallback(function(){
 //     return "User ID is : $id";
 // });
 
-Route::prefix('/users')->group(function() {
+// Route::prefix('/users')->group(function() {
 
-    Route::get('{id?}', function($id = null) {
-        return "User ID is : $id";
-    }); 
-});
+//     Route::get('{id?}', function($id = null) {
+//         return "User ID is : $id";
+//     }); 
+// });
 
-
-Route::get('/register', function (Request $request) {
-    
-    
-
-    //$name = $request->query('name','james');
-    //dd($request); 
-    //  $name = $request->query('name', 'Helen');
-    //  dd($name); 
-    //$parameter = $request->boolean('is_active'); 
-    // $request->merge(['user_id' => 1]);
-    // dd($request->all); 
-
-    //dd($request); 
-});
+ 
 
  
