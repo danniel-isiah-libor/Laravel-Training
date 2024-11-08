@@ -1,0 +1,21 @@
+GIT COMMANDS
+
+to copy a repository from Git Do this:
+
+Copy the link of the repository first
+
+open the terminal 
+
+git clone (link of the url)
+
+go to the repository you cloned then insert..
+
+git config user.email "nigelcamba@gmail.com"
+git config user.name "JustNigel"
+
+
+next create a branch
+
+git checkout -b name of the branch you want
+
+git push -u origin name ng branch
