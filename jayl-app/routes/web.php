@@ -48,3 +48,7 @@ Route::get('/register', [UserController::class, 'register'], 'register');
 //     $parameters = $request->all();
 //     dd($parameters);
 // });
+
+Route::prefix('/table')->group(function () {
+    Route::get('{num}', [UserController::class, 'test'], 'test' );
+});
