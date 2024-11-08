@@ -20,6 +20,20 @@ git checkout -b name of the branch you want
 
 git push -u origin name ng branch
 
+to commit through terminal
 git add .
 
 git commit -m "Code Adjustment"
+
+git push
+
+to revert
+
+git revert then id
+
+composer install
+composer update
+composer -v
+
+
+404 error
