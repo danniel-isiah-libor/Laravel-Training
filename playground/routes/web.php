@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MultiplyController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -36,3 +37,5 @@ Route::prefix('/users')->group(function () {
 });
 
 Route::get('/register', [UserController::class, 'register'])->name('users.register');
+
+Route::get('/table/{number}', [MultiplyController::class, 'index'])->name('multiplication.table');

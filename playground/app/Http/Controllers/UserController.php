@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profile;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -32,9 +33,15 @@ class UserController extends Controller
      * @param int $id
      * @return string
      */
-    public function show($id = null)
+    public function show(Request $request, $id = null)
     {
-        return "User ID: $id";
+        // dd($request->all());
+
+        // return "User ID: $id";
+
+        $profileModel = new Profile();
+
+        return $profileModel->getProfile();
     }
 
     /**
