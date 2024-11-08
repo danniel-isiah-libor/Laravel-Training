@@ -1,5 +1,6 @@
 <?php
 
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Route;
 
 //Route::get('/', function () {
@@ -38,3 +39,7 @@ Route::redirect('/from', ('/to'));
 // Route::fallback(function () {
 //     return 'NOT FOUND';
 // });
+
+Route::get('/register', function(Request $request){
+    dd($request);
+});
