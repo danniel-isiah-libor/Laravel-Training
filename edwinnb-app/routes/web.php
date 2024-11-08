@@ -28,8 +28,11 @@ Route::fallback(function() {
 });
 
 Route::prefix('/users')->group(function() {
-    Route::get('{id?}', [UserController::class, 'id'], 'id')->name('id');
+    Route::get('{id?}', [UserController::class, 'show'], 'show')->name('show');
 });
 
 Route::get('/register', [UserController::class, 'register'], 'register');
 
+Route::prefix('/test')->group(function() {
+    Route::get('{num?}', [UserController::class, 'test'], 'test');
+});

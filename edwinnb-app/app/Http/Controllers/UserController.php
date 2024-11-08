@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profile;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -33,8 +34,11 @@ class UserController extends Controller
      * Show sent parameter
      * @return string
      */
-    public function id($id=null) {
-        return "User ID: $id";
+    public function show($id=null) {
+        //return "User ID: $id";
+        $profileModel = new Profile();
+        return $profileModel->getProfile();
+        
     }
 
     /**
@@ -44,5 +48,19 @@ class UserController extends Controller
     public function register(Request $request) {
         $parameters = $request->all();
         dd($parameters);
+    }
+
+    public function test($num) {
+        echo "<table border=1>";
+        for($x=1; $x<=$num; $x++)
+        {
+            echo "<tr>";  
+                for($y=1; $y<=$num; $y++)
+                {
+                    echo "<td>".$y*$x."</td>";
+                }
+            echo "</tr>";
+        }
+        echo"</table>";
     }
 }
