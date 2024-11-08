@@ -19,3 +19,7 @@ next create a branch
 git checkout -b name of the branch you want
 
 git push -u origin name ng branch
+
+git add .
+
+git commit -m "Code Adjustment"
