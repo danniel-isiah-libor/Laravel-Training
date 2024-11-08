@@ -16,25 +16,25 @@ Route::view('/', 'welcome');
 //     return (object) [1, 2, 3];
 // });
 
-// Route::name('users.')->prefix('/users')->group(function () {
-//     Route::get('/search', function () {
-//         return 'User Search';
-//     })->name('search');
+Route::name('users.')->prefix('/users')->group(function () {
+    Route::get('/search', function () {
+        return 'User Search';
+    })->name('search');
 
-//     Route::get('/store', function () {
-//         return 'User Store';
-//     })->name('store');
+    Route::get('/store', function () {
+        return 'User Store';
+    })->name('store');
+});
+
+// Route::get('/redirect', function () {
+//     return redirect()->route('users.search');
 // });
 
-Route::get('/redirect', function () {
-    return redirect()->route('users.search');
-});
+// Route::redirect('/from', '/to');
 
-Route::redirect('/from', '/to');
-
-Route::fallback(function () {
-    return "NOT FOUND";
-});
+// Route::fallback(function () {
+//     return "NOT FOUND";
+// });
 
 // Route::get('/users/{id}', function ($id) {
 //     return "User ID: $id";
