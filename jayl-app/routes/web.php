@@ -1,7 +1,10 @@
 <?php
 
-use GuzzleHttp\Psr7\Request;
+
+
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\HttpFoundation\Request;
+
 
 //Route::get('/', function () {
 //   return view('welcome');
@@ -41,5 +44,6 @@ Route::redirect('/from', ('/to'));
 // });
 
 Route::get('/register', function (Request $request) {
-    dd($request);
+    $parameters = $request->query('name');
+    dd($parameters);
 });
