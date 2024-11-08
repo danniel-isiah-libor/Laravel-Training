@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -13,19 +13,13 @@ use Symfony\Component\HttpFoundation\Request;
 //     // return "<script> alert('Hello World')</script>";
 // });
 
-// Route::prefix('/users')->name('users.')->group(function() {
-//     Route::get('/search', function () {
-//         return "User Search";
-//     })->name('search');
+Route::prefix('/users')->name('users.')->group(function() {
+    Route::get('/search', [UserController::class, 'search'], 'search')->name('search');
 
-//     Route::get('/store', function () {
-//         return "User Store";
-//     })->name('store');
-// });
-
-Route::get('/redirect', function() {
-    return redirect()->route('users.search');
+    Route::get('/store', [UserController::class, 'store'], 'store')->name('store');
 });
+
+Route::get('/redirect', [UserController::class, 'redirect'], 'redirect');
 
 Route::redirect('/from','/to');
 
@@ -34,13 +28,8 @@ Route::fallback(function() {
 });
 
 Route::prefix('/users')->group(function() {
-    Route::get('{id?}', function ($id=null) {
-        return "User ID: $id";
-    });
+    Route::get('{id?}', [UserController::class, 'id'], 'id')->name('id');
 });
 
-Route::get('/register', function (Request $request) {
-    $parameters = $request->query('name');
-    dd($parameters);
-});
+Route::get('/register', [UserController::class, 'register'], 'register');
 
