@@ -10,8 +10,8 @@
 <body>
  <div class="container">
     <h1>Registration Form</h1>
-    <label for="name" class="form-label">Name</label>
-    <input type="text" class="form-control">
+ 
+    <x-form.input/>
 
     <br>
     <label for="email" class="form-label">Email</label>
