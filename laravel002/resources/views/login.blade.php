@@ -4,11 +4,11 @@
     </x-slot:header>
 
     <x-slot:footer>
-        <h1>This is Login Footer, <a href="{{ route('users.login') }}">register</a></h1>
+        <h1>This is Login Footer, <a href="{{ route('users.register') }}">register</a></h1>
     </x-slot:footer>
 
     <div class="container">
-        <form action="" method="POST" class="container form-control" >
+        <form action="{{ route('users.login-success') }}" method="POST" class="container form-control" >
             @csrf
             <x-form.input label="Email:" type="email" name="email"/>
 

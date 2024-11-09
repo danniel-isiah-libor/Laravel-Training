@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\User\EmploymentRequest;
 use App\Http\Requests\User\LoginRequest;
 use App\Http\Requests\User\StoreRequest;
 use App\Models\Profile;
@@ -100,5 +101,23 @@ class UserController extends Controller
     public function loginRedirect ()
     {
         return view('login');
+    }
+
+
+    /*test login creation*/
+    public function employmentRedirect ()
+    {
+        return view('employment');
+    }
+
+    public function employment(EmploymentRequest $request)
+    {
+        // validate...
+        $validatedRequest = $request->validated();
+        
+        dd($validatedRequest);
+        
+        //authenticate...
+
     }
 }

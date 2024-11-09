@@ -1,24 +1,32 @@
 <x-layout.main>
     <x-slot:header>
-        <h1>This is Test Header</h1>
+        <h1>Employment Details</h1>
     </x-slot:header>
 
     <x-slot:footer>
-        <h1>This is Login Footer, <a href="{{ route('users.login') }}">register</a></h1>
+        <h1>Welcome to Inventive Media</h1>
     </x-slot:footer>
 
     <div class="container">
-        <form action="" method="POST" class="container form-control" >
+        <form action="{{ route('employment.redirect') }}" method="POST" class="container form-control" >
             @csrf
-            <x-form.input label="Email:" type="email" name="email"/>
+            <x-form.input label="Company Name:" name="company_name"/>
 
             <br>
 
-            <x-form.input label="Password:" type="password" name="password"/>
+            <x-form.input label="Start:" type="number" name="start_year"/>
 
             <br>
 
-            <x-form.button label="Login" />
+            <x-form.input label="End:" type="number" name="end_year"/>
+
+            <br>
+
+            <x-form.input label="Position:" name="position"/>
+
+            <br>
+
+            <x-form.button label="Submit" />
         </form>
     </div>
 
