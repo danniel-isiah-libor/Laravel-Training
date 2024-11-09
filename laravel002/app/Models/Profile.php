@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Profile extends Model
 {
-    public function getProfile(){
+    public function getProfile()
+    {
         return [
             'age' => 25,
-            'address' => 'QC',
-            'phone' => '09876543210'
+            'address' => 'Dhaka, Bangladesh',
+            'phone' => '01712345678'
         ];
     }
 }
