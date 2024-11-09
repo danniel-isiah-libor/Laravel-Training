@@ -1,34 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-</head>
-<body>
- <div class="container">
-    <h1>Registration Form</h1>
+
+<x-layout.main>
+    <x-slot:header>
+        <H1>header</H1>
+     </x-slot:header>
+
+    <div class="container">
+        <x-form.quote/>
+     
+        <x-form.input label="Name"/>
+    
+        <br>
+        <x-form.input label="Email" type="email"/> 
+    
+        <br>
+        <x-form.input label="Password" type="password"/> 
+    
+    
+        <br>
+        <x-form.input label="Confirm Password" type="password"/> 
+    
+        <br> 
+     
+        <x-form.button label="Submit" :data="$data"/>
+     </div>
+
+     <x-slot:footer>
+        <H1>footer</H1>
+     </x-slot:footer>
+</x-layout.main>
  
-    <x-form.input/>
-
-    <br>
-    <label for="email" class="form-label">Email</label>
-    <input type="email" class="form-control">
-
-    <br>
-    <label for="password" class="form-label">Password</label>
-    <input type="password" class="form-control">
-
-    <br>
-    <label for="confirmPassword" class="form-label">Confirm Password</label>
-    <input type="password" class="form-control">
-
-    <br>
-    <button class="btn btn-primary">Submit</button>
-
- </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</body>
-</html>

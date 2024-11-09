@@ -60,6 +60,8 @@ class UserController extends Controller
 
         // dd($request->all());
 
-        return view('register');
+        return view('register', [
+            'data' => "Hello world"
+        ]);
     }
 }

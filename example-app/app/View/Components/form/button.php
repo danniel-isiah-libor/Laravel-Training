@@ -6,18 +6,14 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class input extends Component
+class button extends Component
 {
     /**
      * Create a new component instance.
      */
-
-    private $label,$type;
-
-    public function __construct($label, $type = 'text')
+    public function __construct()
     {
-        $this->label = $label;
-        $this->type = $type;
+        //
     }
 
     /**
@@ -25,10 +21,6 @@ class input extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.form.input', [
-            'label' => $this->label,
-            'type' => $this->type
-
-        ]);
+        return view('components.form.button');
     }
 }
