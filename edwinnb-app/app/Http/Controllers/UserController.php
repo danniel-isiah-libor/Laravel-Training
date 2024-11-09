@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\User\LoginRequest;
 use App\Http\Requests\User\StoreRequest;
+use App\Http\Requests\User\WorkRequest;
 use App\Models\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Password;
@@ -30,11 +32,35 @@ class UserController extends Controller
     }
 
     /**
+     * Authenticate log in
+     * @return string
+     */
+    public function authlogin(LoginRequest $request) {
+
+        //validate
+        $validated = $request->validated();
+        dd($validated);   
+    }
+
+    /**
+     * Authenticate log in
+     * @return string
+     */
+    public function history(WorkRequest $request) {
+
+        //validate
+        $validated = $request->validated();
+        dd($validated); 
+    }
+
+    /**
      * Redirection 
      */
     public function redirect() {
         return redirect()->route('users.search');
     }
+
+   
 
     /**
      * Show sent parameter
@@ -47,14 +73,25 @@ class UserController extends Controller
         
     }
 
+
+
     /**
      * Show parameters sent
      * @return array
      */
-    public function register(Request $request) {
-        // $parameters = $request->all();
-        // dd($parameters);
+    public function register() {
         return view('register');
+    }
+
+     /**
+     * Login Form View
+     */
+    public function login() {
+        return view('login');
+    }
+
+    public function workhistory() {
+        return view('workhistory');
     }
 
     public function test($num) {

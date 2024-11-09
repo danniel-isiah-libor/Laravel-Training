@@ -17,15 +17,13 @@ Route::prefix('/users')->name('users.')->group(function() {
     Route::get('/search', [UserController::class, 'search'], 'search')->name('search');
 
     Route::post('/store', [UserController::class, 'store'], 'store')->name('store');
+
+    Route::post('/authlogin', [UserController::class, 'authlogin'], 'authlogin')->name('authlogin');
+
+    Route::get('/history', [UserController::class, 'history'], 'history')->name('history');
 });
 
-Route::get('/redirect', [UserController::class, 'redirect'], 'redirect');
 
-Route::redirect('/from','/to');
-
-Route::fallback(function() {
-    return "NOT FOUND";
-});
 
 Route::prefix('/users')->group(function() {
     Route::get('{id?}', [UserController::class, 'show'], 'show')->name('show');
@@ -33,6 +31,19 @@ Route::prefix('/users')->group(function() {
 
 Route::get('/register', [UserController::class, 'register'], 'register');
 
+Route::get('/login', [UserController::class, 'login'], 'login');
+
+Route::get('/workhistory', [UserController::class, 'workhistory'], 'workhistory');
+
 Route::prefix('/table')->group(function() {
     Route::get('{num?}', [UserController::class, 'test'], 'test');
+});
+
+
+Route::get('/redirect', [UserController::class, 'redirect'], 'redirect');
+
+Route::redirect('/from','/to');
+
+Route::fallback(function() {
+    return "NOT FOUND";
 });

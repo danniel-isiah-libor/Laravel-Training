@@ -10,15 +10,16 @@ use Illuminate\View\Component;
 
 class input extends Component
 {
-    private $label, $type;
+    private $label, $type, $class;
 
     /**
      * Create a new component instance.
      */
-    public function __construct($label, $type='text')
+    public function __construct($label, $type='text', $class='')
     {
         $this->label = $label;
         $this->type = $type;
+        $this->class = $class;
     }
 
     /**
@@ -28,7 +29,8 @@ class input extends Component
     {
         return view('components.form.input',[
             'label'=>$this->label,
-            'type'=>$this->type
+            'type'=>$this->type,
+            'class'=>$this->class
         ]);
     }
 }
