@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\User\StoreRequest;
 use App\Models\Profile;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
@@ -22,11 +24,23 @@ class UserController extends Controller
      *
      * @return string
      */
-    public function store()
+    public function store(StoreRequest $request)
     {
+        //validation
+      $validatedRequest =  $request->validated();
+ 
+     dd($validatedRequest);
+     
+        //saving..
         return 'User Store';
+        
+        
+        
+        
+        // dd($request->all());
+        // dd($request);
     }
-
+    
     /**
      * Display the specified resource.
      *

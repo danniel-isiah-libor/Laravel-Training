@@ -27,8 +27,7 @@ class input extends Component
     {
         return view('components.form.input', [
             'label' => $this->label,
-            'type' => $this->type
-
+            'type' => $this->type 
         ]);
     }
 }

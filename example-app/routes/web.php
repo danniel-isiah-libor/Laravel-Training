@@ -20,7 +20,7 @@ Route::fallback(function () {
 Route::name('users.')->prefix('/users')->group(function () {
     Route::get('/search', [UserController::class, 'search'])->name('search');
 
-    Route::get('/store', [UserController::class, 'store'])->name('store');
+    Route::post('/store', [UserController::class, 'store'])->name('store');
 });
 
 Route::prefix('/users')->group(function () {
