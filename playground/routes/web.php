@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\MultiplicationController;
 use App\Http\Controllers\PyramidController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -20,12 +21,16 @@ Route::view('/', 'welcome');
 
 Route::name('users.')->prefix('/users')->group(function(){
     Route::get('/search', [UserController::class, 'search'])->name('search');
-    Route::get('/store', [UserController::class, 'store'])->name('store');
+    Route::post('/store', [UserController::class, 'store'])->name('store');
     Route::get('/show/{id?}', [UserController::class, 'show'])->name('show');
-    Route::get('register', [UserController::class, 'register'])->name('register');
+    Route::get('/register', [UserController::class, 'showRegister'])->name('register');
+    Route::post('/auth', [UserController::class, 'auth'])->name('auth');
+    Route::get('/login', [UserController::class,'showLogin'])->name('login');
+    Route::get('/workplace', [UserController::class, 'workInfo'])->name('workplace');
+    Route::post('store-workplace', [UserController::class, 'storeWorkplace'])->name('store-workplace');
 });
 
-Route::get('/table/{number}', [UserController::class, 'showNum'])->name('number');
+Route::get('/table/{number}', [MultiplicationController::class, 'showNum'])->name('number');
 Route::get('/redirect', function(){
     // return redirect()->route('users.search');
 });

@@ -1,6 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\User\StoreRequest;
+use App\Http\Requests\WorkplaceRequest;
 use App\Models\Profile;
 use Illuminate\Http\Request;
 
@@ -19,8 +23,13 @@ class UserController extends Controller
      * Method for store
      * @return string
      */
-    public function store(){
-        return 'User Store';
+    public function store(StoreRequest $request){
+        // dd($request->all());
+
+        $validateRequest = $request->validated();
+
+        return redirect(route('users.login'));
+        
     }
 
     /**
@@ -44,31 +53,39 @@ class UserController extends Controller
 
     /**
      * Method for register
-     * @param \Illuminate\Http\Request $request
-     * @return void
      */
 
-    public function register(Request $request){
+    public function showRegister(){
         // $parameter = $request -> query();
         // dd($parameter);
-        $parameters = $request->boolean('is_active', false);
-        $request->merge(['user_id' => 1]);
-        dd($request->all());
+        // $parameters = $request->boolean('is_active', false);
+        // $request->merge(['user_id' => 1]);
+        // dd($request->all());
+        return view('register');
+    }
 
+    public function showLogin(){
+        return view('login');
     }
 
 
-    public function showNum($number){
-        $table = "<table border='1'>";
+    public function auth(LoginRequest $request){
 
-        for($x = 1; $x <= $number; $x++){
-            $table = $table . "<tr>";
-            for($y = 1; $y <= $number; $y++){
-                $table = $table . "<td>" . ($x * $y) . "</td>";
-            }
-            $table = $table . "</tr>";
-        }
-        $table = $table . "</table>";
-        return $table;
+        $validateRequest = $request->validated();
+        dd($validateRequest);
+        return view('login');
+    
+    }
+
+    public function workInfo(){
+        return view('workplace');
+    }
+
+    public function storeWorkplace(WorkplaceRequest $request){
+        $validateRequest = $request->validated();
+
+        dd($validateRequest);
+        return view('workplace');
     }
 }
+

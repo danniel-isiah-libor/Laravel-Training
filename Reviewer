@@ -37,3 +37,12 @@ composer -v
 
 
 404 error
+
+component form/button --view to specify anong target mo
+
+static use --inline
+
+
+php artisan about
+
+after cloning, delete the env then copy the existing then put php artisan generate:key
