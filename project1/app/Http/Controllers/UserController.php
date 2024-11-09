@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\User\LoginRequest;
 use App\Http\Requests\User\StoreRequest;
 use App\Models\Profile;
 use Illuminate\Http\Request;
@@ -21,10 +22,25 @@ class UserController extends Controller
      */
     public function store(StoreRequest $request){
         //Validation step
-        $request->validated();
+        $validatedRequest = $request->validated();
+
 
         //Storing data step
         return "user store";
+    }
+
+    public function login(LoginRequest $request){
+        //Validation step
+        $loginValidatedRequest = $request->validated();
+        $email = "jd@me.com";
+        $password = "Y@hoo2024";
+
+        if($loginValidatedRequest['email']==$email&&$loginValidatedRequest['password']==$password)
+            $mess = "Access Granted";
+        else
+            $mess = "Failed to login";
+        //Storing data step
+        return $mess;
     }
 
     /**

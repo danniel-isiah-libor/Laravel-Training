@@ -13,13 +13,18 @@ Route::get('/', function () {
 
 Route::name('users.')->prefix('/users')->group(function (){
     Route::get('/search',[UserController::class,'search'])->name('search');
+    Route::post('/login',[UserController::class,'login'])->name('login');
     Route::post('/store',[UserController::class,'store'])->name('store');
     Route::get('/show/{id?}',[UserController::class,'show'])->name('show');
     Route::get('/register',[UserController::class,'register'])->name('register');
 });
+
+Route::get('/login', function(){
+    return view('login');
+})->name('formLogin');
+
 Route::name('table.')->prefix('/table')->group(function (){
     Route::get('/show/{num?}',[TableController::class,'show'])->name('show');
-    
 });
 
 // Route::get('/register',function(Request $request){
