@@ -1,2 +1,10 @@
+@props(['name'])
+<label class="form-label">{{ $label }}</label>
+<input type="{{ $type }}" name="{{ $name }}" style="@error($name)
+    border: 1px solid red
+@enderror"
+    class="form-control" value="{{ old($name) }}">
 
-<label class="form-label">{{$label}}</label><input type="{{$type}}" class="form-control">
+@error($name)
+    <p style="color:red">{{ $message }}</p>
+@enderror

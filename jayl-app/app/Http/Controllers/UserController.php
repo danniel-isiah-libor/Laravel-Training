@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\user\LoginRequest;
+use App\Http\Requests\user\StoreRequest;
+use App\Http\Requests\user\WorkRegister;
 use App\Models\Profile;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
@@ -12,9 +16,51 @@ class UserController extends Controller
         return 'user search';
     }
 
-    public function store()
+    public function store(StoreRequest $request)
     {
-        return 'user store';
+        $validatedrequest = $request->validated();
+        // dd($request->all());
+        // $parameters=$request->all();
+        // return $parameters;
+        // return 'user store';
+        dd($validatedrequest);
+    }
+
+    public function authlogin(LoginRequest $request)
+    {
+        $validatedrequest = $request->validated();
+        // dd($request->all());
+        // $parameters=$request->all();
+        // return $parameters;
+        // return 'user store';
+        dd($validatedrequest);
+    }
+
+
+    public function work(WorkRegister $request)
+    {
+        $validatedrequest = $request->validated();
+        // dd($request->all());
+        // $parameters=$request->all();
+        // return $parameters;
+        // return 'user store';
+        dd($validatedrequest);
+    }
+
+    // public function redirectlogin()
+    // {
+    //     return view('login');
+    // }
+
+
+    public function login()
+    {
+        return view('login');
+    }
+
+    public function workhistory()
+    {
+        return view('workhistory');
     }
 
     public function show(Request $request, $id = null)
@@ -30,9 +76,11 @@ class UserController extends Controller
     {
         // $parameters = $request->all();
         // dd($parameters);
-        return view('register',['data'=>'Hello World!']);
+        return view('register', ['data' => 'Hello World!']);
     }
     //
+
+
 
     public function test($num)
     {
