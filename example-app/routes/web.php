@@ -1,46 +1,46 @@
 <?php
 
-use Illuminate\Routing\Router;
+use App\Http\Controllers\MultiplyController;
+use App\Http\Controllers\UserController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+Route::view('/', 'welcome');
 
-// Route::get('/sample', function () {
-//     return "<h1 style='color: blue'>bawitdaba</h1>";
-//     // return false;
+// Route::get('/', function () {
+//     // return "<script> alert('hello world'); </script>";
+//     // return "<h1 style='color: red'>Hello World</h1>";
+//     return (object)[1, 2, 3];
 // });
 
-//using prefix para di na humaba ang URL
-Route::prefix('/users')->name('users.')->group( function () {
-    Route::get('/doctors', function () {
-        return "return doctors";
-    })->name('doctors');
-
-    Route::view('/', 'Welcome');
-
-    Route::get('/encoders', function () {
-        return "return encoders";
-    })->name('encoders');
-});
-
 Route::get('/redirect', function () {
-    return redirect()->route('users.encoders');
+    return redirect()->route('users.search');
 });
 
-Route::redirect('/users', '/ako', 301);
+Route::redirect('/from', '/to');
 
-Route::fallback(function(){
-    return "<h1>Lakas mo!!</h1>";
+Route::fallback(function () {
+    return "NOT FOUND";
 });
 
-Route::get('/users/{id}', function ($id) {
-    return "User ID: $id";
+Route::name('users.')->prefix('/users')->group(function () {
+    Route::get('/search', [UserController::class, 'search'])->name('search');
+
+    Route::post('/store', [UserController::class, 'store'])->name('store');
 });
 
-Route::prefix('/users')->name('users.')->group( function () {
-    Route::get('{id?}', function ($id) {
-        return "User ID: $id";
-    });
+Route::prefix('/users')->group(function () {
+    Route::get('{id?}', [UserController::class, 'show'])->name('users.show');
 });
+
+Route::get('/register', [UserController::class, 'register'])->name('users.register');
+Route::get('/login', [UserController::class, 'login'])->name('users.login');
+Route::post('/login', [UserController::class, 'processlogin'])->name('users.processlogin');
+
+Route::get('/RegWork', [UserController::class, 'RegWork'])->name('users.RegWork');
+Route::post('/SaveWorkEx', [UserController::class, 'SaveWorkEx'])->name('users.SaveWorkEx');
+
+// Route::get('/table/{number}', [MultiplyController::class, 'index'])->name('multiplication.table');
