@@ -52,10 +52,12 @@ class UserController extends Controller
      */
     public function register(Request $request)
     {
-        $parameters = $request->boolean('is_active', false);
+        // $parameters = $request->boolean('is_active', false);
 
-        $request->merge(['user_id' => 1]);
+        // $request->merge(['user_id' => 1]);
 
-        dd($request->all());
+        // dd($request->all());
+
+        return view('register');
     }
 }
