@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Profile;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
@@ -22,8 +23,38 @@ class UserController extends Controller
      *
      * @return string
      */
-    public function store()
+    public function store(Request $request)
     {
+        // validate
+        $request->validate([
+            'name' => [
+                'required',
+                'string',
+                'max:255'
+            ],
+            'email' => [
+                'required',
+                'string',
+                'email',
+                'max:255',
+                // 'unique:users,email'
+            ],
+            'password' => [
+                'required',
+                'confirmed',
+                Password::min(8)
+                    ->max(12)
+                    ->mixedCase()
+                    ->symbols()
+                    ->numbers()
+                    ->uncompromised()
+            ]
+        ]);
+
+
+
+        // saving....
+
         return 'User Store';
     }
 

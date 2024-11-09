@@ -10,23 +10,27 @@
     <x-form.quote />
 
     <div class="container">
-        <x-form.input label="Name" />
+        <form action="{{ route('users.store') }}" method="POST">
+            @csrf
 
-        <br>
+            <x-form.input label="Name" name="name" />
 
-        <x-form.input label="Email" type="email" />
+            <br>
 
-        <br>
+            <x-form.input label="Email" type="email" name="email" />
 
-        <x-form.input label="Password" type="password" />
+            <br>
 
-        <br>
+            <x-form.input label="Password" type="text" name="password" />
 
-        <x-form.input label="Confirm Password" type="password" />
+            <br>
 
-        <br>
+            <x-form.input label="Confirm Password" type="text" name="password_confirmation" />
 
-        <x-form.button label="Register" />
+            <br>
+
+            <x-form.button label="Register" />
+        </form>
     </div>
 
     <?php
