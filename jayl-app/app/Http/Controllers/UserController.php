@@ -28,8 +28,9 @@ class UserController extends Controller
 
     public function register(Request $request)
     {
-        $parameters = $request->all();
-        dd($parameters);
+        // $parameters = $request->all();
+        // dd($parameters);
+        return view('register',['data'=>'Hello World!']);
     }
     //
 
