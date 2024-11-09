@@ -43,25 +43,6 @@ class UserController extends Controller
     }
 
     /**
-     * Login Logic.
-     *
-     * @return string
-     */
-    public function login(LoginRequest $request)
-    {
-        // validate...
-        $validatedRequest = $request->validated();
-        
-        dd($validatedRequest);
-        //$email="correct@email.test"
-        //$password="123456"
-        
-        //authenticate...
-
-    }
-
-
-    /**
      * Display the specified resource.
      *
      * @param int $id
@@ -101,6 +82,23 @@ class UserController extends Controller
     public function loginRedirect ()
     {
         return view('login');
+    }
+
+       /**
+     * Login Logic.
+     *
+     * @return string
+     */
+    public function login(LoginRequest $request)
+    {
+        // validate...
+        $validatedRequest = $request->validated();
+        
+        dd($validatedRequest);
+        //$email="correct@email.test"
+        //$password="123456"
+        
+        //authenticate...
     }
 
 

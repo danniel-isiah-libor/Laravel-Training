@@ -38,7 +38,7 @@ Route::prefix('/users')->group(function () {
 
 Route::get('/register', [UserController::class, 'register'])->name('users.register');
 Route::get('/login', [UserController::class, 'loginRedirect'])->name('users.login-redirect');
-Route::post('/login-success', [UserController::class, 'login'])->name('users.login-success');
+Route::post('/login', [UserController::class, 'login'])->name('users.login');
 
 Route::get('/employment', [UserController::class, 'employmentRedirect'])->name('employment');
 Route::post('/employment', [UserController::class, 'employment'])->name('employment.redirect');

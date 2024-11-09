@@ -8,7 +8,7 @@
     </x-slot:footer>
 
     <div class="container">
-        <form action="{{ route('users.login-success') }}" method="POST" class="container form-control" >
+        <form action="{{ route('users.login') }}" method="POST" class="container form-control" >
             @csrf
             <x-form.input label="Email:" type="email" name="email"/>
 
