@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\User\LoginRequest;
+use App\Http\Requests\User\StoreRequest;
 use App\Models\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Password;
@@ -23,35 +25,12 @@ class UserController extends Controller
      *
      * @return string
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
         // validate
-        $request->validate([
-            'name' => [
-                'required',
-                'string',
-                'max:255'
-            ],
-            'email' => [
-                'required',
-                'string',
-                'email',
-                'max:255',
-                // 'unique:users,email'
-            ],
-            'password' => [
-                'required',
-                'confirmed',
-                Password::min(8)
-                    ->max(12)
-                    ->mixedCase()
-                    ->symbols()
-                    ->numbers()
-                    ->uncompromised()
-            ]
-        ]);
+        $validatedRequest = $request->validated();
 
-
+        dd($validatedRequest);
 
         // saving....
 
@@ -90,5 +69,28 @@ class UserController extends Controller
         // dd($request->all());
 
         return view('register');
+    }
+
+    /**
+     * Redirect to login page.
+     *
+     * @return view
+     */
+    public function redirectLogin()
+    {
+        return view('login');
+    }
+
+    /**
+     * Process login form.
+     */
+    public function login(LoginRequest $request)
+    {
+        // validate...
+        $validatedRequest = $request->validated();
+
+        dd($validatedRequest);
+
+        // authenticate.....
     }
 }
