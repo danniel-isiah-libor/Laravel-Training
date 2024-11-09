@@ -1,1 +1,6 @@
-<button class="btn btn-primary">Submit</button>
+@props(['label' => 'Submit', 'data'])
+
+<button class="btn btn-primary">{{ $label }}</button>
+
+
+{{ $data }}
