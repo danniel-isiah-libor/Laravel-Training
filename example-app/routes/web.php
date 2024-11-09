@@ -30,6 +30,11 @@ Route::prefix('/users')->group(function () {
 Route::get('/register', [UserController::class, 'register'])->name('users.register');
 
 
+// Route::get('/user/{id}', function (string $id) {
+//     return 'User '.$id;
+//    });
+   
+
 
 
 
