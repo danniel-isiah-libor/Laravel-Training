@@ -34,7 +34,8 @@ class UserController extends Controller
      * 
      */
     public function register( Request $request){
-        $parameter = $request->merge(["is_active",1]);
-        return "user register";
+        // $parameter = $request->merge(["is_active",1]);
+        // return "user register";
+        return view('register',['data'=>"sample data"]);
     }
 }
