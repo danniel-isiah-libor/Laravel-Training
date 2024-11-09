@@ -1,25 +1,12 @@
 <x-layout.main>
-    <x-slot:header>
-        <h1>Header</h1>
-    </x-slot:header>
     <div class="container">
-        <form action="">
-            <div class="form-group">
-                <x-form.input label="Name" type="text" />
-            </div>
-            <div class="form-group">
-                <x-form.input label="Email" type="email" />
-            </div>
-            <div class='form-group'>
-                <x-form.input label="Password" type="password" />
-            </div>
-            <div class='form-group'>
-                <x-form.input label="Confirm Password" type="password" />
-            </div>
-            <x-form.button label="Register" :data="$data" />
+        <form action="{{ route('users.store') }}" method = "POST">
+            @csrf
+            <x-form.input name="name" label="Name" type="text"/>
+            <x-form.input name="email" label="Email" type="email"/>
+            <x-form.input name="password" label="Password" type="password"/>
+            <x-form.input name="password_confirmation" label="Confirm Password" type="password"/>
+            <x-form.button label="Register" />
         </form>
     </div>
-    <x-slot:footer>
-        <h6>Footer</h6>
-    </x-slot:footer>
 </x-layout.main>

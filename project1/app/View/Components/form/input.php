@@ -13,10 +13,12 @@ class input extends Component
      */
     private $label = "";
     private $type = "";
+    //private $name = "";
     public function __construct($label,$type="text")
     {
         $this->label = $label;
         $this->type = $type;
+        //$this->name = $name;
     }
 
     /**

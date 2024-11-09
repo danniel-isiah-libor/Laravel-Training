@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\User\StoreRequest;
 use App\Models\Profile;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
@@ -17,7 +19,11 @@ class UserController extends Controller
     /**
      * 
      */
-    public function store(){
+    public function store(StoreRequest $request){
+        //Validation step
+        $request->validated();
+
+        //Storing data step
         return "user store";
     }
 
@@ -36,6 +42,6 @@ class UserController extends Controller
     public function register( Request $request){
         // $parameter = $request->merge(["is_active",1]);
         // return "user register";
-        return view('register',['data'=>"sample data"]);
+        return view('register');
     }
 }
