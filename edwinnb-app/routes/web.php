@@ -33,6 +33,6 @@ Route::prefix('/users')->group(function() {
 
 Route::get('/register', [UserController::class, 'register'], 'register');
 
-Route::prefix('/test')->group(function() {
+Route::prefix('/table')->group(function() {
     Route::get('{num?}', [UserController::class, 'test'], 'test');
 });
