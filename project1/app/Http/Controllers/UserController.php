@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\User\LoginRequest;
 use App\Http\Requests\User\StoreRequest;
+use App\Http\Requests\User\WorkRequest;
 use App\Models\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Password;
@@ -41,6 +42,14 @@ class UserController extends Controller
             $mess = "Failed to login";
         //Storing data step
         return $mess;
+    }
+
+    public function work(WorkRequest $request){
+        //Validation step
+        $workValidatedRequest = $request->validated();
+        dd($workValidatedRequest);
+        //Storing data step
+        return "users work experience";
     }
 
     /**
