@@ -7,26 +7,27 @@
         <h1>This is Test Footer</h1>
     </x-slot:footer>
 
-   <div class="container">
-        <x-form.input label="Name:"/>
+    <div class="container">
+        <form action="{{ route('users.store') }}" method="POST">
+            @csrf
 
-        <br>
+            <x-form.input label="Name:" name="name"/>
 
-        <x-form.input label="Email:" type="email"/>
+            <br>
 
-        <br>
+            <x-form.input label="Email:" type="email" name="email"/>
 
-        <x-form.input label="Password:" type="password"/>
+            <br>
 
-        <br>
+            <x-form.input label="Password:" type="password" name="password"/>
 
-        <x-form.input label="Confirm Password:" type="password"/>
+            <br>
 
-        <br>
+            <x-form.input label="Confirm Password:" type="password" name="password_confirmation"/>
 
-        <x-form.button label="Register" :data="$data" />
+            <br>
 
+            <x-form.button label="Register" :data="$data" />
+        </form>
     </div>
-
-    
 </x-layout.main>
