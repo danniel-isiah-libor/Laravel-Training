@@ -19,7 +19,6 @@ Route::fallback(function () {
 
 Route::name('users.')->prefix('/users')->group(function () {
     Route::get('/search', [UserController::class, 'search'])->name('search');
-
     Route::post('/store', [UserController::class, 'store'])->name('store');
 });
 
@@ -29,27 +28,29 @@ Route::prefix('/users')->group(function () {
 
 Route::get('/register', [UserController::class, 'register'])->name('users.register');
 
+// start
+Route::get('/login', [UserController::class, 'redirectLogin'])->name('users.redirect-login');
+Route::post('/login', [UserController::class, 'login'])->name('users.login');
+// end
+
+
+
+Route::get('/workExperience', [UserController::class, 'redirectWorkExperience'])
+->name('users.redirect-redirectWorkExperience');
+
+Route::post('/workExperience', [UserController::class, 'workExperience'])
+->name('users.workExp');
+
+
+
+
 
 // Route::get('/user/{id}', function (string $id) {
 //     return 'User '.$id;
 //    });
    
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 
 // Route::get('/', function () {

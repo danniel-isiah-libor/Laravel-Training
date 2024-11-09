@@ -19,8 +19,7 @@
         
             <br>
             <x-form.input label="Password" type="password" name="password"/> 
-        
-        
+         
             <br>
             <x-form.input label="Confirm Password" type="password" name="password_confirmation"/> 
         
@@ -30,9 +29,9 @@
  
         </form>
      </div>
-{{-- 
+
      <x-slot:footer>
         <H1>footer</H1>
-     </x-slot:footer> --}}
+     </x-slot:footer>
 </x-layout.main>
  

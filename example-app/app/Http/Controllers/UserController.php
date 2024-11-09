@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\User\LoginRequest;
 use App\Http\Requests\User\StoreRequest;
+use App\Http\Requests\User\WorkExperience;
 use App\Models\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Password;
@@ -78,4 +80,47 @@ class UserController extends Controller
             'data' => "Hello world"
         ]);
     }
+
+
+
+// start
+
+    public function redirectLogin()
+    {
+        return view('login');
+        //return "welcome page";
+    }
+
+    public function login(LoginRequest $request)
+    {
+        //validate
+         $validatedRequest = $request->validated();
+
+         dd($validatedRequest);
+
+
+         //authenticate
+    }
+
+// end 
+
+
+
+//start
+    public function redirectWorkExperience()
+    {
+        return view('workExperience');
+    }
+
+    public function workExperience(WorkExperience $request)
+    {
+        
+        //validate
+        $validatedRequest = $request->validated();
+
+        dd($validatedRequest);
+   
+    }
+
+//end
 }
