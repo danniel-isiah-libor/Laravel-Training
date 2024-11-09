@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 Route::prefix('/users')->name('users.')->group(function() {
     Route::get('/search', [UserController::class, 'search'], 'search')->name('search');
 
-    Route::get('/store', [UserController::class, 'store'], 'store')->name('store');
+    Route::post('/store', [UserController::class, 'store'], 'store')->name('store');
 });
 
 Route::get('/redirect', [UserController::class, 'redirect'], 'redirect');
