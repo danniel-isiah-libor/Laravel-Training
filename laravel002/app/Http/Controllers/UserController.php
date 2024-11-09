@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\User\LoginRequest;
 use App\Http\Requests\User\StoreRequest;
 use App\Models\Profile;
 use Illuminate\Http\Request;
@@ -41,6 +42,25 @@ class UserController extends Controller
     }
 
     /**
+     * Login Logic.
+     *
+     * @return string
+     */
+    public function login(LoginRequest $request)
+    {
+        // validate...
+        $validatedRequest = $request->validated();
+        
+        dd($validatedRequest);
+        //$email="correct@email.test"
+        //$password="123456"
+        
+        //authenticate...
+
+    }
+
+
+    /**
      * Display the specified resource.
      *
      * @param int $id
@@ -74,5 +94,11 @@ class UserController extends Controller
         return view('register', [
             'data' => "Hello World"
         ]);
+    }
+
+    /*test login creation*/
+    public function loginRedirect ()
+    {
+        return view('login');
     }
 }

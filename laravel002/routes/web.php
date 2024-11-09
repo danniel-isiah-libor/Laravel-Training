@@ -37,5 +37,10 @@ Route::prefix('/users')->group(function () {
 });
 
 Route::get('/register', [UserController::class, 'register'])->name('users.register');
+Route::get('/login', [UserController::class, 'loginRedirect'])->name('users.login-redirect');
+
+
+Route::post('/login', [UserController::class, 'login'])->name('users.login');
+
 
 Route::get('/table/{number}', [MultiplyController::class, 'index'])->name('multiplication.table');
