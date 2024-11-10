@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests\User\EmploymentRequest;
 use App\Http\Requests\User\LoginRequest;
 use App\Http\Requests\User\StoreRequest;
+use App\Models\JobExperience;
 use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
@@ -40,10 +42,95 @@ class UserController extends Controller
         //]);
 
         // saving...
+        // $sql = "SELECT * FROM users WHERE id = 1"
+        //->where('id', '=', 1);
+        //->where('id', 'like', '%johndoe%')
+        //->where('id', 1) // =
+        //$user = User::select()->where('id', 1)->first();
+        //$user = User::where('id', 1)->first();
+        //$user = User::whereId(1)->first();
+        //$user = User::find(1); // for primary key only
+
+        // SELECT * FROM users WHERE id  IS NOT NULL ...
+        //$user = User::whereNotNull('id')->first(); 
+
+        // SELECT * FROM users WHERE id  IS NOT LIMIT 1 ...
+        //$user = User::whereNull('id')->first(); 
+
+        //$user = User::whereIn('id', [1, 2, 3])->get();
+        //$user = User::whereNotNull('id')->get();
+        //$user = User::whereBetween('created_at', ['2020-01-01','2025-01-01'])->get();
+
+        // $user = User::where('id', '=', 1)
+        //      ->where('email', 'daniel.abelardo@example.net')
+        //      ->first();
+
+        // $user = User::where('id', '=', 1)
+        //      ->orWhere('email', 'daniel.abelardo@example.net')
+        //      ->first();
+
+        // $user = User::whereId(1)
+        //     ->orWhere('id', 2)
+        //     ->get();
+
+        // $user = JobExperience::where(function($query) {
+        //     $query->where('start_year', '>=', now()->startOfYear()->addYear(-1))
+        //     ->where('end_year', '<=', now());
+            
+        // })
+
+        // ->orWhere('id',2)
+        // //->limit(10)
+        // //->toSql();
+        // ->get();
+
+        // $user = DB::select("SELECT * FROM users WHERE id = 1 limit 1");
+
+        //$user = User::whereRaw('id = 1')->first();
+
+        // $user = DB::table('users')
+        //     ->where('id',1)
+        //     ->orWhereRaw('id=2')
+        //     ->get();
+
+        // $user = User::where('id', [1,2,3])->cursor();
+
+        // $user = User::orderBy('id', 'desc')
+        // ->get();
+
+        // $user = User::orderBy('id', 'asc')
+        // ->orderBy('create_at', 'desc')
+        // ->orderBy(function ($query) {
+        //     $query->where('id', 2)
+        //         ->orderBy('updated_at', 'desc');
+        // })
+        // ->toSql();
+
+        // $user = User::with('workExperiences')
+        //     ->where('id', 11)
+        //     ->get();
+
+        //$user = JobExperience::with('user')->first();
+
+        // $user = User::where('users.id', 11)
+        //     ->where('table1.start_year','<=', now())
+        //     //->join('job_experiences as table1', 'table1.user_id', '=', 'users.id'))
+        //     ->join('job_experiences as table1', function ($query) {
+        //         $query->on('table1.user_id', '=', 'users.id');
+        //     })
+        //     ->first();
+        // dd($user->toArray());
+
+        $user = User::create([
+            'name' => 'John Doe',
+            'email' => 'johndoe@email.test',
+            'password' => 'admin123'
+        ]);
+
+        dd($user);
 
         return redirect()->route('users.login-redirect');
 
-        return 'User Store';
     }
 
     /**
@@ -72,9 +159,7 @@ class UserController extends Controller
     public function register(Request $request)
     {
        //$parameters = $request->boolean('is_active', false);
-
         //$request->merge(['user_id' => 1]);
-
         //dd($request->all());
 
         return view('register', [
@@ -88,7 +173,7 @@ class UserController extends Controller
         return view('login');
     }
 
-       /**
+    /**
      * Login Logic.
      *
      * @return string
