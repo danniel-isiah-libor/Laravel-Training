@@ -22,7 +22,9 @@ class WorkRegister extends FormRequest
      */
     public function rules(): array
     {
-        return [
+
+
+        $rules = [
             'Company' => [
                 'required',
                 'string',
@@ -31,16 +33,24 @@ class WorkRegister extends FormRequest
             'StartDate' => [
                 'required',
                 'date',
-                'before:EndDate'
+
             ],
             'EndDate' => [
-                'required',
-                 'date',
-                'after:StartDate'
+
+                'date',
+                'after:StartDate',
+                'nullable'
             ],
             'Position' => [
                 'required'
             ],
         ];
+
+        if (request()->filled('EndDate')) {
+            $rules['StartDate'][] = 'before:EndDate';
+        }
+
+
+        return $rules;
     }
 }
