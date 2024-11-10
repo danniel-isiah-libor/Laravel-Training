@@ -38,12 +38,12 @@ class StoreRequest extends FormRequest
                 //'string',
                 //'min:8',
                 //'max:12',
-                'confirmed',
-                Password::min(8)
-                ->mixedCase()
-                ->symbols()
-                ->numbers()
-                ->uncompromised()
+                // 'confirmed',
+                // Password::min(8)
+                // ->mixedCase()
+                // ->symbols()
+                // ->numbers()
+                // ->uncompromised()
             ],
         ];
     }

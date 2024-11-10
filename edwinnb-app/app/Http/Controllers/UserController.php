@@ -7,8 +7,10 @@ use App\Http\Requests\User\StoreRequest;
 use App\Http\Requests\User\WorkRequest;
 use App\Models\Profile;
 use App\Models\User;
+use App\Models\WorkExperience;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
@@ -29,7 +31,21 @@ class UserController extends Controller
 
         //validate
         $validated = $request->validated();
-        dd($validated);
+        // $user = User::find(1); //PrimaryKey
+        // $user = User::where('id', 1)->cursor();
+        // $user = WorkExperience::where(function($query){
+        //     $query->where('start_date','>=', 1/1/1975)
+        //     ->where('end_date','<=', now());
+        // }) ->get();
+        // $user = DB::select("SELECT * FROM users WHERE id=1 LIMIT 1");
+        // $user=User::with('workExperiences')
+        //     ->where('id',11)
+        //     ->get();
+
+        $user = WorkExperience::with('user')
+        ->first();
+
+        dd($user->toArray());
         
     }
 
