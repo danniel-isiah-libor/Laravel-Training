@@ -52,4 +52,16 @@ class StoreRequest extends FormRequest
             ]
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Bobo kaba?!'
+        ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this ->merge(['user_id' => 1]);
+    }
 }

@@ -21,24 +21,34 @@ class WorkExRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        $rules = [
             'company' => [
                 'required',
-                'string'
+                'string',
+                'max:255'
             ],
             'start_date' => [
                 'required',
-                'date',
-                'before:end_date'
+                'string',
             ],
             'end_date' => [
-                'date',
+                'string',
                 'after:start_date',
+                'nullable',
             ],
             'role' => [
                 'required',
-                'string'
-            ],
+                'string',
+                'max:255'
+            ]
         ];
+
+        if (request()->filled('end_date')) {
+            $rules['start_date'][] = 'before:end_date';
+        }
+
+        dd($rules);
+
+        return $rules;
     }
 }
