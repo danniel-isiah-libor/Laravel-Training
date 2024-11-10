@@ -29,11 +29,15 @@ Route::prefix('/users')->group(function() {
     Route::get('{id?}', [UserController::class, 'show'], 'show')->name('show');
 });
 
-Route::get('/register', [UserController::class, 'register'], 'register');
+Route::get('/register', [UserController::class, 'register'], 'register')->name('register');
 
 Route::get('/login', [UserController::class, 'login'], 'login');
 
+Route::get('/logout', [UserController::class, 'logout'], 'logout')->name('logout');
+
 Route::get('/workhistory', [UserController::class, 'workhistory'], 'workhistory');
+
+Route::view('/dashboard', 'dashboard')->name('dashboard');
 
 Route::prefix('/table')->group(function() {
     Route::get('{num?}', [UserController::class, 'test'], 'test');

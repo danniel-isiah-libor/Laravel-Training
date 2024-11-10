@@ -6,7 +6,7 @@
         <br>
         <h2>Log in</h2>
         <br>
-        <x-form.input label="Username" type='text' name="username"/>
+        <x-form.input label="Email" type='text' name="email"/>
 
         <br>
 
@@ -17,8 +17,11 @@
         <x-form.button label="Login" />
 
         <br>
-    </form>
-        {{-- <a href="{{ route('register') }}">Register</a> --}}
+    </form>      
+    </div>
+
+    <div class="container">
+        <a href="{{ route('register') }}">Register here</a>
     </div>
     
 

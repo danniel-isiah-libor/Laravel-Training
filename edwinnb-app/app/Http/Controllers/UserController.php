@@ -6,7 +6,9 @@ use App\Http\Requests\User\LoginRequest;
 use App\Http\Requests\User\StoreRequest;
 use App\Http\Requests\User\WorkRequest;
 use App\Models\Profile;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
@@ -39,11 +41,19 @@ class UserController extends Controller
 
         //validate
         $validated = $request->validated();
-        dd($validated);   
+        
+        //authenticate
+        $user = new User();
+
+        $user->email = $validated['email'];
+
+        Auth::login($user);
+
+        return view('dashboard');
     }
 
     /**
-     * Authenticate log in
+     * Validate log in
      * @return string
      */
     public function history(WorkRequest $request) {
