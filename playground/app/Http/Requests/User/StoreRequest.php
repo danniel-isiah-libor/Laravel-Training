@@ -2,7 +2,11 @@
 
 namespace App\Http\Requests\User;
 
+use App\Exceptions\CustomValidateException;
+use Exception;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 
 class StoreRequest extends FormRequest
@@ -12,7 +16,7 @@ class StoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return !!Auth::check();
     }
 
     /**
@@ -23,6 +27,11 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
+            // 'user_id' => [
+            //     'required',
+            //     'numeric',
+            //     // 'exists:users,id'
+            // ],
             'name' => [
                 'required',
                 'string',
@@ -47,4 +56,23 @@ class StoreRequest extends FormRequest
             ]
         ];
     }
+
+    // public function messages()
+    // {
+    //     return [
+    //         'name.required' => 'This is a custom message',
+    //         'password.confirmed' => 'Wrong password'
+    //     ];
+    // }
+
+    // protected function prepareForValidation()
+    // {
+    //     // $request->merge();
+    //     $this->merge(['user_id' => 1]);
+    // }
+
+    // protected function failedValidation(Validator $validator)
+    // {
+    //     throw new CustomValidateException();
+    // }
 }

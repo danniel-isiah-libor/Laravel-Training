@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\User\LoginRequest;
 use App\Http\Requests\User\StoreRequest;
 use App\Models\Profile;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
@@ -30,11 +32,9 @@ class UserController extends Controller
         // validate
         $validatedRequest = $request->validated();
 
-        dd($validatedRequest);
-
         // saving....
 
-        return 'User Store';
+        return redirect()->route('users.redirect-login');
     }
 
     /**
@@ -89,8 +89,27 @@ class UserController extends Controller
         // validate...
         $validatedRequest = $request->validated();
 
-        dd($validatedRequest);
-
         // authenticate.....
+        $user = new User();
+
+        $user->email = $validatedRequest['email'];
+
+        Auth::login($user);
+
+        // dump(Auth::check()); // true
+
+        // Auth::logout();
+
+        // dd(Auth::check()); // false
+
+        // return redirect()->route('dashboard');
+        return view('dashboard');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect()->route('users.redirect-login');
     }
 }

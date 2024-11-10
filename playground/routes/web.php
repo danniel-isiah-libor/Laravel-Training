@@ -55,3 +55,8 @@ Route::prefix('/work-experiences')->name('work-experiences.')->group(function ()
     Route::post('/store', [WorkExperienceController::class, 'store'])
         ->name('store');
 });
+
+Route::view('/dashboard', 'dashboard')->name('dashboard');
+
+Route::get('/logout', [UserController::class, 'logout'])
+    ->name('logout');
