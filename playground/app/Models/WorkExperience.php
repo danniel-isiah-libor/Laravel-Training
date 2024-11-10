@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class WorkExperience extends Model
 {
     use HasFactory;
+
+    /**
+     * Relationship to users
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+        // return $this->belongsToMany();
+    }
 }
