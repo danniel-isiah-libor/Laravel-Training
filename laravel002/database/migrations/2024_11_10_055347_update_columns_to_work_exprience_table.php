@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('job_experiences', function (Blueprint $table) {
-            $table->string('company_name',500)
+            $table->string('company_names',500)
             ->change();
 
-            $table->renameColumn('company_name', 'company_names');
+            $table->renameColumn('company_names', 'company_name');
         });
     }
 
@@ -25,10 +25,10 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('job_experiences', function (Blueprint $table) {
-            $table->string('company_names')
+            $table->string('company_name')
             ->change();
 
-            $table->renameColumn('company_names','company_name');
+            $table->renameColumn('company_name','company_names');
         });
     }
 };
