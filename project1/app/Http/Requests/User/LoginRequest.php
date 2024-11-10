@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\User;
 
+use App\Rules\LoginRule;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -25,7 +26,8 @@ class LoginRequest extends FormRequest
         return [
             "email"=>[
                 "required",
-                "string"
+                "string",
+                new LoginRule
             ],
             "password"=>[
                 "required"
@@ -33,7 +35,8 @@ class LoginRequest extends FormRequest
         ];
     }
 
-    public function prepareForValidation(){
+    public function prepareForValidation()
+    {
         
     }
 }

@@ -26,10 +26,7 @@ class UserController extends Controller
      * 
      */
     public function store(StoreRequest $request){
-        //Validation step
-        $validatedRequest = $request->validated();
-
-        //Storing data step
+        //Querying step with eloquent
         //first = limit 1
         //$user = User::select()->where('id',1)->first();
         //$user = User::where('id','=',1)->first();
@@ -65,11 +62,32 @@ class UserController extends Controller
         //groupBy()
         //->toArray() - object to array
         //$user = User::with('workExperiences')->where('id',11)->get();
-        $user = User::where('users.id',11)
-                    ->join("work_experiences as we","we.user_id","=","users.id")
-                    ->first();
-        dd($user->toArray());
-        //return "user store";
+        // $user = User::where('users.id',11)
+        //             ->join("work_experiences as we","we.user_id","=","users.id")
+        //             ->first();
+        // dd($user->toArray());
+        
+        //Storing step with eloquent
+        //Insert data to DB
+        //User::create()
+        //$user = new User() - Object style
+        //$user->save() - to execute save
+        //User::insert([]) - for multiple insert, can accommodate multi-dimensional array
+        
+        //Update data to DB
+        //$user = User::where('id',1)->update([
+        //'name' => 'Johnny'
+        //])
+        //$user = User::find(1);
+        //$user->name = 'Brendon';
+        //$user->save();
+
+        //delete - same with update
+
+        //Validation step
+        $validatedRequest = $request->validated();
+        //dd($validatedRequest);
+        $user = User::create($validatedRequest);
         return redirect()->route('formLogin');
     }
 
@@ -79,8 +97,9 @@ class UserController extends Controller
         // $email = "jd@me.com";
         // $password = "Y@hoo2024";
 
-        $user = new User();
-        $user->email = $loginValidatedRequest['email'];
+        //$user = new User();
+        $user = User::whereEmail($loginValidatedRequest['email'])->first();
+        //$user->email = $loginValidatedRequest['email'];
         Auth::login($user);
         //if($loginValidatedRequest['email']==$email&&$loginValidatedRequest['password']==$password)
         if(Auth::check())
