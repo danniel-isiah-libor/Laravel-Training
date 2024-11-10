@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('work_experiences', function (Blueprint $table) {
+        Schema::table('job_experiences', function (Blueprint $table) {
             $table->boolean('is_current')->default(false)->after('position');
         });
     }
@@ -21,7 +21,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('work_experiences', function (Blueprint $table) {
+        Schema::table('job_experiences', function (Blueprint $table) {
             $table->dropColumn('is_current');
         });
     }
