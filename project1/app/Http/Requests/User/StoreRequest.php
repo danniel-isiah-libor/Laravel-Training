@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\User;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -13,6 +14,7 @@ class StoreRequest extends FormRequest
     public function authorize(): bool
     {
         //return false;
+        //return Auth::check();
         return true;
     }
 
