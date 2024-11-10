@@ -44,3 +44,8 @@ Route::get('/employment', [UserController::class, 'employmentRedirect'])->name('
 Route::post('/employment', [UserController::class, 'employment'])->name('employment.redirect');
 
 Route::get('/table/{number}', [MultiplyController::class, 'index'])->name('multiplication.table');
+
+
+Route::view('/dashboard', 'dashboard')->name('dashboard');
+
+Route::get('/logout', [UserController::class, 'logout'])->name('logout');

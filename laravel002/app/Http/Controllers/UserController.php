@@ -6,7 +6,9 @@ use App\Http\Requests\User\EmploymentRequest;
 use App\Http\Requests\User\LoginRequest;
 use App\Http\Requests\User\StoreRequest;
 use App\Models\Profile;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
@@ -31,13 +33,15 @@ class UserController extends Controller
         //dd($request->all());
 
         //  validate...
-       $validatedRequest = $request->validated();
-        dd($validatedRequest);
+        $validatedRequest = $request->validated();
+        //dd($validatedRequest);
         //$request->validate([
         //    direct validation in controller
         //]);
 
         // saving...
+
+        return redirect()->route('users.login-redirect');
 
         return 'User Store';
     }
@@ -94,11 +98,26 @@ class UserController extends Controller
         // validate...
         $validatedRequest = $request->validated();
         
-        dd($validatedRequest);
+        //dd($validatedRequest);
         //$email="correct@email.test"
         //$password="123456"
         
         //authenticate...
+        $user = new User();
+
+        $user->email = $validatedRequest['email'];
+
+        Auth::login($user);
+
+        // dump(Auth::check());
+
+        // Auth::logout();
+        
+        // dd(Auth::check());
+
+        //return redirect()->route('dashboard');
+
+        return view('dashboard');
     }
 
 
@@ -117,5 +136,14 @@ class UserController extends Controller
         
         //authenticate...
 
+    }
+
+
+    /*test logout*/
+    public function logout ()
+    {
+    Auth::logout();
+        
+    return redirect()->route('users.login-redirect');
     }
 }

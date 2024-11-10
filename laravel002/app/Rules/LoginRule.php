@@ -14,7 +14,7 @@ class LoginRule implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if(true){
+        if(false){
             $fail('Invalid Credentials');
         }
     }
