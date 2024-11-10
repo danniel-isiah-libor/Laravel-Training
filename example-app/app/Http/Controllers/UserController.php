@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\User\Information;
 use App\Http\Requests\User\LoginRequest;
 use App\Http\Requests\User\StoreRequest;
 use App\Http\Requests\User\WorkExperience;
 use App\Models\Profile;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
@@ -29,15 +32,14 @@ class UserController extends Controller
     public function store(StoreRequest $request)
     {
         //validation
-      $validatedRequest =  $request->validated();
+       $validatedRequest =  $request->validated();
  
-     dd($validatedRequest);
+    //  dd($validatedRequest);
      
         //saving..
-        return 'User Store';
+        return redirect()->route('users.redirect-login');
         
-        
-        
+         
         
         // dd($request->all());
         // dd($request);
@@ -96,10 +98,28 @@ class UserController extends Controller
         //validate
          $validatedRequest = $request->validated();
 
-         dd($validatedRequest);
+        //  dd($validatedRequest);
 
 
          //authenticate
+         $user = new User(); 
+         $user->email = $validatedRequest['email'];
+
+
+        //  dd($user);
+         Auth::login($user);
+
+        //  dd(Auth::check());
+        // Auth::logout();
+
+        // return redirect()->route('dashboard');
+         return view('dashboard');
+    }
+
+    public function logout()
+    {
+        Auth::logout(); 
+        return redirect()->route('users.redirect-login');
     }
 
 // end 
@@ -118,9 +138,26 @@ class UserController extends Controller
         //validate
         $validatedRequest = $request->validated();
 
-        dd($validatedRequest);
-   
+        dd($validatedRequest); 
     }
 
 //end
+
+//start
+    public function redirectInformation() //call the view/Display
+    {
+        return view('information');
+    }   
+
+    public function information(Information $request)
+    {
+        $validateRequest = $request->validated(); 
+        dd($validateRequest);
+      //  dd($request->all());
+    }
+//end
+
+
 }
+
+ 

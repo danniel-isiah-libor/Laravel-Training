@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use Faker\Guesser\Name;
 use Illuminate\Http\Request;  
 use Illuminate\Support\Facades\Route;
 
@@ -30,16 +31,39 @@ Route::get('/register', [UserController::class, 'register'])->name('users.regist
 
 // start
 Route::get('/login', [UserController::class, 'redirectLogin'])->name('users.redirect-login');
+
 Route::post('/login', [UserController::class, 'login'])->name('users.login');
 // end
 
 
-
+//start
 Route::get('/workExperience', [UserController::class, 'redirectWorkExperience'])
 ->name('users.redirect-redirectWorkExperience');
 
 Route::post('/workExperience', [UserController::class, 'workExperience'])
 ->name('users.workExp');
+//end
+
+
+//start
+Route::get('/information', [UserController::class, 'redirectInformation'])
+->name('users.redirect-information');
+
+Route::post('/information', [UserController::class, 'information'])
+->name('users.info');
+//end
+
+//start
+Route::view('/dashboard', 'dashboard')->name('dashboard');
+Route::get('/logout', [UserController::class, 'logout'])
+->name('logout');
+
+//end
+
+
+
+
+
 
 
 
@@ -48,10 +72,6 @@ Route::post('/workExperience', [UserController::class, 'workExperience'])
 // Route::get('/user/{id}', function (string $id) {
 //     return 'User '.$id;
 //    });
-   
-
- 
-
 
 // Route::get('/', function () {
 //     return view('welcome');

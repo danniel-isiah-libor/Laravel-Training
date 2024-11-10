@@ -4,6 +4,7 @@ namespace App\Http\Requests\User;
 use Illuminate\Validation\Rules\Password;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class StoreRequest extends FormRequest
 {
@@ -12,7 +13,8 @@ class StoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        // return true;
+        return !!Auth::check();
     }
 
     /**
@@ -49,4 +51,25 @@ class StoreRequest extends FormRequest
             ]
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'The name field is required BAWAL.',
+            // 'name.string' => 'The name field must be a string.',
+            // 'name.max' => 'The name field may not be greater than 255 characters.',
+
+            // 'email.required' => 'The email field is required.',
+            // 'email.string' => 'The email field must be a string.',
+            // 'email.email' => 'The email field must be a valid email address.',
+            // 'email.max' => 'The email field may not be greater than 255 characters.',
+            // // 'email.unique' => 'The email has already been taken.',
+
+            // 'password.required' => 'The password field is required.',
+            // 'password.confirmed' => 'The password and confirmation password do not match.',
+            // 'password.min' => 'The password must be at least 8 characters.',
+        ];
+    }
+
+    
 }
