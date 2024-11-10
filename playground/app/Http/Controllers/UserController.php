@@ -7,9 +7,11 @@ use App\Http\Requests\User\StoreRequest;
 use App\Models\Profile;
 use App\Models\User;
 use App\Models\WorkExperience;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
@@ -31,9 +33,6 @@ class UserController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        // validate
-        $validatedRequest = $request->validated();
-
         // saving....
         // $sql = "SELECT * FROM users WHERE id = 1 LIMIT 1"
         // ->where('id', '=', 1)
@@ -99,16 +98,68 @@ class UserController extends Controller
 
         // $user = WorkExperience::with('user')->first();
 
-        $user = User::where('users.id', 11)
-            ->where('table1.start_date', '<=', now())
-            // ->join('work_experiences as table1', 'table1.user_id', '=', 'users.id')
-            ->crossJoin('work_experiences as table1', function ($query) {
-                $query->on('table1.user_id', '=', 'users.id');
-                // ->where(.....);
-            })
-            ->first();
+        // $user = User::where('users.id', 11)
+        //     ->where('table1.start_date', '<=', now())
+        //     // ->join('work_experiences as table1', 'table1.user_id', '=', 'users.id')
+        //     ->crossJoin('work_experiences as table1', function ($query) {
+        //         $query->on('table1.user_id', '=', 'users.id');
+        //         // ->where(.....);
+        //     })
+        //     ->first();
 
-        dd($user->toArray());
+        // dd($user->toArray());
+
+        // validate
+        $validatedRequest = $request->validated();
+
+        // saving...
+        $user = User::create($validatedRequest);
+
+        // $user = new User();
+        // $user->name = $validatedRequest['name'];
+        // $user->email = 'janedoe@mail.test';
+        // $user->password = 'admin123';
+        // $user->save();
+
+        // $csv = [
+        //     [
+        //         'name' => 'Danniel',
+        //         'email' => 'dan+2@mail.test',
+        //         'password' => Hash::make('password'),
+        //         'created_at' => now(),
+        //         'updated_at' => now()
+        //     ],
+        //     [
+        //         'name' => 'Denise',
+        //         'email' => 'den+2@mail.test',
+        //         'password' => Hash::make('password'),
+        //         'created_at' => now(),
+        //         'updated_at' => now()
+        //     ],
+        // ];
+
+        // $user = User::insert($csv);
+
+        // $user = User::where('id', 1)->update([
+        //     'name' => 'Johnny'
+        // ]);
+
+        // $user = User::find(1);
+        // $user->name = "Brendon";
+        // $user->save();
+
+        // $user = User::truncate();
+
+        // $http = new Client();
+        // $response = $http
+        // ->post('/api/visual-basic', [
+        //     'headers' => [],
+        //     'params' => []
+        // ]);
+
+        // $user = User::findOrFail(1)->delete();
+
+        // dd($user);
 
         return redirect()->route('users.redirect-login');
     }
