@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\authenticateMiddleware;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -31,13 +32,13 @@ Route::prefix('/users')->group(function() {
 
 Route::get('/register', [UserController::class, 'register'], 'register')->name('register');
 
-Route::get('/login', [UserController::class, 'login'], 'login');
+Route::get('/login', [UserController::class, 'login'], 'login')->name('login');
 
 Route::get('/logout', [UserController::class, 'logout'], 'logout')->name('logout');
 
 Route::get('/workhistory', [UserController::class, 'workhistory'], 'workhistory');
 
-Route::view('/dashboard', 'dashboard')->name('dashboard');
+Route::view('/dashboard', 'dashboard')->name('dashboard')->middleware(authenticateMiddleware::class);
 
 Route::prefix('/table')->group(function() {
     Route::get('{num?}', [UserController::class, 'test'], 'test');
@@ -51,3 +52,5 @@ Route::redirect('/from','/to');
 Route::fallback(function() {
     return "NOT FOUND";
 });
+
+

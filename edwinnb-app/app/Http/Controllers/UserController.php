@@ -31,6 +31,8 @@ class UserController extends Controller
 
         //validate
         $validated = $request->validated();
+        
+        //SELECT
         // $user = User::find(1); //PrimaryKey
         // $user = User::where('id', 1)->cursor();
         // $user = WorkExperience::where(function($query){
@@ -42,10 +44,50 @@ class UserController extends Controller
         //     ->where('id',11)
         //     ->get();
 
-        $user = WorkExperience::with('user')
-        ->first();
+        //INSERT
 
-        dd($user->toArray());
+        // $user = User::create([
+        //     'name' => 'Jack',
+        //     'email' => 'jack@email.com',
+        //     'password' => 'admin123'
+        // ]);
+
+        // $user = new User;
+        // $user->name = 'Jane';
+        // $user->email = 'email2@email.com';
+        // $user->password = 'admin123';
+        // $user->save();
+
+        // $user=User::insert([
+        //     [
+        //         'name' => 'Sam',
+        //         'email'=> 'email3@email.com',
+        //         'password' => 'admin123'
+        //     ],
+
+        //     [
+        //         'name' => 'tim',
+        //         'email'=> 'time@email.com',
+        //         'password' => 'admin123'
+        //     ],
+        // ]);
+
+        //UPDATE
+
+        // $user = User::where('id', 1)->update([
+        //     'name' => 'Johnny'
+        // ]);
+
+        // $user = User::find(1);
+        // $user->name = "Bren";
+        // $user->save();
+
+        // dd($user->toArray());
+
+        //DELETE
+        //$user = User::find(1)->delete();
+
+
         
     }
 
@@ -60,7 +102,6 @@ class UserController extends Controller
         
         //authenticate
         $user = new User();
-
         $user->email = $validated['email'];
 
         Auth::login($user);
@@ -114,6 +155,11 @@ class UserController extends Controller
      */
     public function login() {
         return view('login');
+    }
+
+    public function logout() {
+        Auth::logout();
+        return redirect()->route('login');
     }
 
     public function workhistory() {
