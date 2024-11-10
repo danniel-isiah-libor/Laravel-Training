@@ -31,6 +31,7 @@ class UserController extends Controller
 
         //validate
         $validated = $request->validated();
+        $user= User::create($validated);
         
         //SELECT
         // $user = User::find(1); //PrimaryKey
@@ -87,7 +88,7 @@ class UserController extends Controller
         //DELETE
         //$user = User::find(1)->delete();
 
-
+        return redirect()->route('login');
         
     }
 
