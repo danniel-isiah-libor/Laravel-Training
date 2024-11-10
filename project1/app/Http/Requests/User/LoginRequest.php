@@ -32,4 +32,8 @@ class LoginRequest extends FormRequest
             ]
         ];
     }
+
+    public function prepareForValidation(){
+        
+    }
 }
