@@ -215,9 +215,8 @@ class UserController extends Controller
         $validatedRequest = $request->validated();
 
         // authenticate.....
-        $user = new User();
-
-        $user->email = $validatedRequest['email'];
+        $user = User::whereEmail($validatedRequest['email'])
+            ->first();
 
         Auth::login($user);
 
@@ -227,8 +226,7 @@ class UserController extends Controller
 
         // dd(Auth::check()); // false
 
-        // return redirect()->route('dashboard');
-        return view('dashboard');
+        return redirect()->route('dashboard');
     }
 
     public function logout()
