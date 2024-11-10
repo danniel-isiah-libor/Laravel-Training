@@ -124,7 +124,7 @@ class UserController extends Controller
 
 
         // saving..
-        // $user = User::creatE($validatedRequest); //personal na ginagamit ni instructor
+        $user = User::create($validatedRequest); //personal na ginagamit ni instructor
 
         // $user = User::create([
         //     'name' => 'John Doe',
@@ -238,9 +238,14 @@ class UserController extends Controller
         //$password="123456"
         
         //authenticate...
-        $user = new User();
+        // $user = new User();
 
-        $user->email = $validatedRequest['email'];
+        // $user->email = $validatedRequest['email'];
+
+        // Auth::login($user);
+
+        $user = User::whereEmail($validatedRequest['email'])
+        ->first();
 
         Auth::login($user);
 

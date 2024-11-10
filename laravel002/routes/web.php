@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MultiplyController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\AuthenticateMiddleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -46,6 +47,10 @@ Route::post('/employment', [UserController::class, 'employment'])->name('employm
 Route::get('/table/{number}', [MultiplyController::class, 'index'])->name('multiplication.table');
 
 
-Route::view('/dashboard', 'dashboard')->name('dashboard');
+Route::view('/dashboard', 'dashboard')
+->name('dashboard')
+->middleware(AuthenticateMiddleware::class);
+
 
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+
