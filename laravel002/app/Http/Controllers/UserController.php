@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
@@ -121,13 +122,62 @@ class UserController extends Controller
         //     ->first();
         // dd($user->toArray());
 
-        $user = User::create([
-            'name' => 'John Doe',
-            'email' => 'johndoe@email.test',
-            'password' => 'admin123'
-        ]);
 
-        dd($user);
+        // saving..
+        // $user = User::creatE($validatedRequest); //personal na ginagamit ni instructor
+
+        // $user = User::create([
+        //     'name' => 'John Doe',
+        //     'email' => 'johndoe@email.test',
+        //     'password' => 'admin123'
+        // ]);
+
+        // $user = new User();
+        // $user->name = 'John Daw';
+        // $user->email = 'johndaw@email.test';
+        // $user->password = 'admin123';
+        // $user->save();
+
+        // Storing ...
+        // $csv = [
+        //     [
+        //         'name' => 'Jane Die',
+        //         'email' => 'janedin+1@mail.test',
+        //         'password' => Hash::make('admin123'),
+        //         'created_at' => now(),
+        //         'updated_at' => now()
+        //     ],
+        //     [
+        //         'name' => 'Jane Joe',
+        //         'email' => 'janedoe+2@mail.test',
+        //         'password' => Hash::make('admin123'),
+        //         'created_at' => now(),
+        //         'updated_at' => now()
+        //     ],
+        // ];
+
+        // $user = User::insert($csv);
+        //dd($user);
+
+        
+        // Update...
+        // $user =User::where('id', 1)->update([
+        //     'name' => 'Johhy Johhny'
+        // ]);
+        
+        // $user = User::find(1);
+        // $user->name= "Johny Sins";
+        // $user->save();
+        //dd($user);
+
+
+        //Deletion...
+
+        //$user = User::truncate(); //option but not recommended
+
+        //$user=User::findOrFail(41)->delete();
+
+        //dd($user);
 
         return redirect()->route('users.login-redirect');
 
