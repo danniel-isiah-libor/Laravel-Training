@@ -22,7 +22,19 @@ class WorkExperienceFactory extends Factory
             'company_name'=>fake()->company(),
             'start_date'=>fake()->date(),
             'end_date'=>fake()->date(),
+            //'is_current'=>fake()->randomElement([false,true]),
+            'is_current'=>false,
             'position'=>fake()->jobTitle()
         ];
+    }
+
+    public function current()
+    {
+        return $this->state(function (){
+            return [
+                'end_date'=>null,
+                'is_current'=>true
+            ];
+        });
     }
 }
