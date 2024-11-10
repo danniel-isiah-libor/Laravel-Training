@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\MultiplicationController;
 use App\Http\Controllers\PyramidController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\AuthenticateMiddleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,8 @@ Route::name('users.')->prefix('/users')->group(function(){
     Route::get('/login', [UserController::class,'showLogin'])->name('login');
     Route::get('/workplace', [UserController::class, 'workInfo'])->name('workplace');
     Route::post('store-workplace', [UserController::class, 'storeWorkplace'])->name('store-workplace');
+    Route::get('/dashboard', [UserController::class, 'showDashboard'])->name('dashboard')->middleware(AuthenticateMiddleware::class);
+    Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 });
 
 Route::get('/table/{number}', [MultiplicationController::class, 'showNum'])->name('number');
