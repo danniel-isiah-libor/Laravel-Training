@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\AuthenticateMiddleware;
 use Faker\Guesser\Name;
 use Illuminate\Http\Request;  
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,7 @@ Route::post('/login', [UserController::class, 'login'])->name('users.login');
 
 //start
 Route::get('/workExperience', [UserController::class, 'redirectWorkExperience'])
+->middleware(AuthenticateMiddleware::class)
 ->name('users.redirect-redirectWorkExperience');
 
 Route::post('/workExperience', [UserController::class, 'workExperience'])
@@ -54,7 +56,9 @@ Route::post('/information', [UserController::class, 'information'])
 //end
 
 //start
-Route::view('/dashboard', 'dashboard')->name('dashboard');
+Route::view('/dashboard', 'dashboard')
+->name('dashboard')
+->middleware(AuthenticateMiddleware::class);
 Route::get('/logout', [UserController::class, 'logout'])
 ->name('logout');
 

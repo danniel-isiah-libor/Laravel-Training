@@ -13,8 +13,8 @@ class StoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        // return true;
-        return !!Auth::check();
+         return true;
+       // return !!Auth::check();
     }
 
     /**
