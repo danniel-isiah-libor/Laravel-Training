@@ -14,11 +14,11 @@
 
             <br>
 
-            <x-form.input label="Start:" type="number" name="start_year"/>
+            <x-form.input label="Start:" type="text" name="start_year"/>
 
             <br>
 
-            <x-form.input label="End:" type="number" name="end_year"/>
+            <x-form.input label="End:" type="text" name="end_year"/>
 
             <br>
 
