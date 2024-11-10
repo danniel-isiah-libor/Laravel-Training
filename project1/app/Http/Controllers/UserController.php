@@ -56,12 +56,19 @@ class UserController extends Controller
         //$user = DB::select("SELECT * FROM users WHERE id = 1 LIMIT 1")->get();
         //WHERE query type
         //$user = User::whereRaw('id = 1 OR id = 2')->get();
-        $user = DB::table("users")
-                ->where('id',1)
-                ->orWhereRaw('id=2')
-                ->get();
+        // $user = DB::table("users")
+        //         ->where('id',1)
+        //         ->orWhereRaw('id=2')
+        //         ->get();
         //user cursor() for faster query
-        dd($user);
+        //orderBy()
+        //groupBy()
+        //->toArray() - object to array
+        //$user = User::with('workExperiences')->where('id',11)->get();
+        $user = User::where('users.id',11)
+                    ->join("work_experiences as we","we.user_id","=","users.id")
+                    ->first();
+        dd($user->toArray());
         //return "user store";
         return redirect()->route('formLogin');
     }
