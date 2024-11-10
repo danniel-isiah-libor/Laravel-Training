@@ -6,7 +6,9 @@ use App\Http\Requests\User\LoginRequest;
 use App\Http\Requests\User\StoreRequest;
 use App\Http\Requests\User\WorkRequest;
 use App\Models\Profile;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
@@ -27,21 +29,30 @@ class UserController extends Controller
 
 
         //Storing data step
-        return "user store";
+        //return "user store";
+        return redirect()->route('formLogin');
     }
 
     public function login(LoginRequest $request){
         //Validation step
         $loginValidatedRequest = $request->validated();
-        $email = "jd@me.com";
-        $password = "Y@hoo2024";
+        // $email = "jd@me.com";
+        // $password = "Y@hoo2024";
 
-        if($loginValidatedRequest['email']==$email&&$loginValidatedRequest['password']==$password)
-            $mess = "Access Granted";
+        $user = new User();
+        $user->email = $loginValidatedRequest['email'];
+        Auth::login($user);
+        //if($loginValidatedRequest['email']==$email&&$loginValidatedRequest['password']==$password)
+        if(Auth::check())
+            return view('dashboard');
         else
-            $mess = "Failed to login";
-        //Storing data step
-        return $mess;
+            return redirect()->route('formLogin');
+    }
+
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('formLogin');
+        
     }
 
     public function work(WorkRequest $request){

@@ -1,5 +1,5 @@
 <x-layout.main>
-
+    <x-slot:header></x-slot:header>
     <form class="container form-control" action="{{ route('users.login') }}" method="POST">
         @csrf
         <x-form.input name="email" label="Email" type="email" />
@@ -9,4 +9,5 @@
         </x-slot:footer>
         <x-form.button label="Login" />
     </form>
+    <x-slot:footer></x-slot:footer>
 </x-layout.main>

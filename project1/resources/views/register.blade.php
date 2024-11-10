@@ -1,4 +1,5 @@
 <x-layout.main>
+    <x-slot:header></x-slot:header>
     <div class="container">
         <form action="{{ route('users.store') }}" method = "POST">
             @csrf
@@ -9,4 +10,5 @@
             <x-form.button label="Register" />
         </form>
     </div>
+    <x-slot:footer></x-slot:footer>
 </x-layout.main>

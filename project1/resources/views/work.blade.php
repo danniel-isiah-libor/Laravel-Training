@@ -11,10 +11,10 @@
             <div class="col-md-12">
                 <form action="{{ route('users.SaveWork') }}" method="POST" class="form-control">
                     @csrf
-                    <x-form.input name="company" label="Company" type="text" />
+                    <x-form.input name="company" label="Company" type="text" class="" />
                     <x-form.input name="start_date" label="Date Started" type="text" class="datepicker" />
-                    <x-form.input name="end_date" label="Date Ended" type="text" />
-                    <x-form.input name="position" label="Position" type="text" />
+                    <x-form.input name="end_date" label="Date Ended" type="text" class="datepicker" />
+                    <x-form.input name="position" label="Position" type="text" class="" />
                     <x-form.button label="Submit" />
                 </form>
             </div>

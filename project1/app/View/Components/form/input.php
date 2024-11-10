@@ -13,12 +13,12 @@ class input extends Component
      */
     private $label = "";
     private $type = "";
-    //private $name = "";
-    public function __construct($label,$type="text")
+    private $class = "";
+    public function __construct($label,$type="text",$class="")
     {
         $this->label = $label;
         $this->type = $type;
-        //$this->name = $name;
+        $this->class = $class;
     }
 
     /**
@@ -28,7 +28,8 @@ class input extends Component
     {
         return view('components.form.input',[
             'label'=>$this->label,
-            'type'=>$this->type
+            'type'=>$this->type,
+            'class'=>$this->class
         ]);
     }
 }

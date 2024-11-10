@@ -14,6 +14,7 @@ Route::get('/', function () {
 Route::name('users.')->prefix('/users')->group(function (){
     Route::get('/search',[UserController::class,'search'])->name('search');
     Route::post('/login',[UserController::class,'login'])->name('login');
+    Route::get('/logout',[UserController::class,'logout'])->name('logout');
     Route::post('/store',[UserController::class,'store'])->name('store');
     Route::post('/work',[UserController::class,'work'])->name('SaveWork');
     Route::get('/show/{id?}',[UserController::class,'show'])->name('show');
@@ -27,6 +28,10 @@ Route::get('/login', function(){
 Route::get('/work', function(){
     return view('work');
 })->name('formWork');
+
+Route::get('/dashboard', function(){
+    return view('dashboard');
+})->name('dashboard');
 
 Route::name('table.')->prefix('/table')->group(function (){
     Route::get('/show/{num?}',[TableController::class,'show'])->name('show');
