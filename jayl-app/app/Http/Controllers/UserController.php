@@ -6,7 +6,10 @@ use App\Http\Requests\user\LoginRequest;
 use App\Http\Requests\user\StoreRequest;
 use App\Http\Requests\user\WorkRegister;
 use App\Models\Profile;
+use App\Models\User;
+use App\Models\WorkExperience;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
@@ -18,23 +21,64 @@ class UserController extends Controller
 
     public function store(StoreRequest $request)
     {
-        $validatedrequest = $request->validated();
+        $validatedRequest = $request->validated();
         // dd($request->all());
         // $parameters=$request->all();
         // return $parameters;
         // return 'user store';
-        dd($validatedrequest);
+        // dd($validatedrequest);
+        // $user = User::select()->where('id', '=', '2')->first()->get();
+        // $user = User::whereID(1)->get();
+        // $user = WorkExperience::where(function ($squery) {
+        //     $squery->where('StartDate', '>=', now()->addYear(-5))
+        //         ->where('EndDate', '<=', now());
+        // })->get();
+        // $user = DB::select("SELECT * FROM users WHERE id=1 limit 1");
+        // $user = User::whereRaw('id=1')->first();
+        // $user = User::orderBy('id', 'desc')->get();
+        // dd($user->toArray());
+        // $user= DB::table('users')->where('id',1)->orwhereRaw('id,2')->get();
+        // $user = User::with('WorkExperiences')->where('id', 11)->get();
+        // $user = WorkExperience::with('user')->first();
+        // dd($user->toArray());
+        $user = User::create($validatedRequest);
+        // $user = new User();
+        // $user->name = 'Jane Doee';
+        // $user->email = 'Janedoe2@example.com';
+        // $user->password = 'jane123';
+        // $user->save();
+        // $user = User::find(1);
+        // $user->name = "brendan";
+        // $user->save();
+        // $user = User::find(1)->delete();
+        // dd($user);
+        return redirect()->route('users.redirectlogin');
     }
 
     public function authlogin(LoginRequest $request)
     {
-        $validatedrequest = $request->validated();
+        $validatedRequest = $request->validated();
         // dd($request->all());
         // $parameters=$request->all();
         // return $parameters;
         // return 'user store';
-        dd($validatedrequest);
+        // dd($validatedrequest);
+        $user = new User();
+        $user->email = $validatedRequest['email'];
+        Auth::login($user);
+        // dump(Auth::check());
+        // Auth::logout();
+        // dump(Auth::check());
+        // return redirect()->route('dashboard');
+        return view('dashboard');
     }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login');
+    }
+    
 
 
     public function work(WorkRegister $request)
@@ -47,10 +91,10 @@ class UserController extends Controller
         dd($validatedrequest);
     }
 
-    // public function redirectlogin()
-    // {
-    //     return view('login');
-    // }
+    public function redirectlogin()
+    {
+        return view('login');
+    }
 
 
     public function login()

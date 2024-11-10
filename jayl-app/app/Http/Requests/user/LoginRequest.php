@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\user;
 
+use App\Rules\LoginRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
 
@@ -29,7 +30,7 @@ class LoginRequest extends FormRequest
                 'required',
                 'string',
                 'email',
-                'max:255'
+                new LoginRule
                 //, 'unique:users,email'
             ],
             'password' =>
