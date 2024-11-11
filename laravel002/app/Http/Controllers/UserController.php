@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\User\EmploymentRequest;
 use App\Http\Requests\User\LoginRequest;
 use App\Http\Requests\User\StoreRequest;
+use App\Http\Requests\User\UpdateRequest;
 use App\Models\JobExperience;
 use App\Models\Profile;
 use App\Models\User;
@@ -285,5 +286,41 @@ class UserController extends Controller
     Auth::logout();
         
     return redirect()->route('users.login-redirect');
+    }
+
+
+        /**
+     * Redirect to profile page.
+     */
+    public function profile()
+    {
+        // $id = Auth::user()->id;
+
+        // $user = User::find($id);
+
+        return view('UserUpdate', [
+            // 'user' => $user
+        ]);
+    }
+
+    /**
+     * Update user profile
+     */
+    public function update(UpdateRequest $request)
+    {
+        // validate...
+        $validatedRequest = $request->validated();
+
+        $id = Auth::user()->id;
+
+        $user = User::find($id);
+        $user->name = $validatedRequest['name'];
+        $user->email = $validatedRequest['email'];
+
+        if ($validatedRequest['password']) {
+            $user->password = $validatedRequest['password'];
+        }
+
+        $user->save();
     }
 }

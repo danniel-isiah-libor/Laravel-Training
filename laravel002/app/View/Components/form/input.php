@@ -27,8 +27,8 @@ class input extends Component
     public function render(): View|Closure|string
     {
         return view('components.form.input', [
-           'label' => $this->label,
-           'type' => $this->type
+        'label' => $this->label,
+        'type' => $this->type
         ]);
     }
 }

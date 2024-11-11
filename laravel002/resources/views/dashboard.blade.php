@@ -9,6 +9,7 @@
         {{ auth()->user()->email }}
         <br>
         <br>
+        <a href="{{ route('profile') }}" class="btn btn-primary">Update</a>
         <a href="{{ route('logout') }}" class="btn btn-danger">Logout</a>
         <br>
     </div>

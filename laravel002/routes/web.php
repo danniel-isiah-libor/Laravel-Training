@@ -52,5 +52,14 @@ Route::view('/dashboard', 'dashboard')
 ->middleware(AuthenticateMiddleware::class);
 
 
+
+Route::get('/profile', [UserController::class, 'profile'])
+    ->name('profile');
+
+Route::post('/profile', [UserController::class, 'update'])
+    ->name('profile.update');
+
+
+
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
