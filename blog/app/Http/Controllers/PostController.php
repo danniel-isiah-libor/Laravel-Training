@@ -6,7 +6,9 @@ use App\Http\Requests\Post\DestroyRequest;
 use App\Http\Requests\Post\StoreRequest;
 use App\Http\Requests\Post\UpdateRequest;
 use App\Models\Post;
+use App\Notifications\PostNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -36,7 +38,9 @@ class PostController extends Controller
     {
         $validatedRequest = $request->validated();
 
-        Post::create($validatedRequest);
+        $post = Post::create($validatedRequest);
+
+        auth()->user()->notify(new PostNotification($post));
 
         return redirect()->route('dashboard');
     }
@@ -78,7 +82,23 @@ class PostController extends Controller
      */
     public function destroy(DestroyRequest $request, Post $post)
     {
-        $post->delete();
+        DB::beginTransaction();
+
+        try {
+            // complicated queries....
+            Post::where('id', 1)->get();
+
+            // updating...
+            Post::where('id', 1)->update(['title' => 'test']);
+
+            $post->delete();
+
+            // throw new \Exception;
+
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+        }
 
         return redirect()->route('dashboard');
     }
