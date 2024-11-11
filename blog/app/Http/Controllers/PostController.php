@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Post\DestroyRequest;
 use App\Http\Requests\Post\StoreRequest;
 use App\Http\Requests\Post\UpdateRequest;
 use App\Models\Post;
@@ -14,7 +15,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        // $posts = Post::paginate(2);
+        $posts = Post::simplePaginate(2);
+
+        return view('dashboard', ['posts' => $posts]);
     }
 
     /**
@@ -72,8 +76,10 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(DestroyRequest $request, Post $post)
     {
-        //
+        $post->delete();
+
+        return redirect()->route('dashboard');
     }
 }

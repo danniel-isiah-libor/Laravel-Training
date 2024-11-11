@@ -14,4 +14,20 @@
             </div>
         </div>
     </div>
+
+    <ul>
+        @foreach ($posts as $post)
+            <li>
+                Title: <a href="{{ route('posts.show', $post) }}">{{ $post->title }}</a>
+                <br>
+                Written By: {{ $post->user->email }}
+                <br>
+                {{ $post->updated_at->diffForHumans() }}
+            </li>
+
+            <br>
+        @endforeach
+    </ul>
+
+    {{ $posts->links() }}
 </x-app-layout>
