@@ -20,10 +20,11 @@
             <x-form.input label="Email" type="email" name="email" :value="auth()->user()->email"/> 
         
             <br>
-            <x-form.input label="Password" type="password" name="password" /> 
             
             <x-form.input label="Current Password" type="password" name="current_password" /> 
             <br>
+            <x-form.input label="Password" type="password" name="password" /> 
+          <br>
             <x-form.input label="Confirm Password" type="password" name="password_confirmation"/> 
         
             <br> 
