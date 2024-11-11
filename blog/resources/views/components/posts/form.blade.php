@@ -3,7 +3,7 @@
     'post' => null,
 ])
 
-<form action="{{ $isEdit ? route('posts.update', $post->id) : route('posts.store') }}" method="POST"
+<form action="{{ $isEdit ? route('posts.update', $post) : route('posts.store') }}" method="POST"
     class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
     @csrf
 
