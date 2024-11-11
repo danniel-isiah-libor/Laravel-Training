@@ -9,8 +9,11 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 @foreach($posts as $post)
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{-- {{ __("You're logged in!") }} --}}
-                    {{$post['title']}}
+                    
+                    <p>Title: {{$post['title']}}</p>
+                    <p>Body: {{$post['body']}}</p>
+                    <p>Written By: {{$post->user->email}}</p>
+                    <p>Date Published By: {{$post->created_at}}</p>
                 </div>
                 @endforeach
             </div>

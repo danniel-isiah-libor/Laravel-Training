@@ -6,6 +6,7 @@
     </x-slot>
   
     <div class="py-12">
+        <a href="{{route('post.edit')}}" class='btn btn-success'>Edit Post</a>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             
             Title: {{$post->title}}
