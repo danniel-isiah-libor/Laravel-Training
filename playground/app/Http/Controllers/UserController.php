@@ -8,6 +8,7 @@ use App\Models\Profile;
 use App\Models\User;
 use App\Models\WorkExperience;
 use GuzzleHttp\Client;
+use GuzzleHttp\Promise\Promise;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;

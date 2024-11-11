@@ -3,6 +3,8 @@
 use App\Http\Controllers\MultiplyController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkExperienceController;
+use App\Http\Middleware\AuthenticateMiddleware;
+use App\Http\Middleware\TestMiddleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -46,17 +48,25 @@ Route::get('/login', [UserController::class, 'redirectLogin'])
 Route::post('/login', [UserController::class, 'login'])
     ->name('users.login');
 
+Route::post('/test', [UserController::class, 'login'])
+    ->middleware(TestMiddleware::class);
+
 Route::get('/table/{number}', [MultiplyController::class, 'index'])->name('multiplication.table');
 
-Route::prefix('/work-experiences')->name('work-experiences.')->group(function () {
-    Route::get('/create', [WorkExperienceController::class, 'create'])
-        ->name('create');
+Route::prefix('/work-experiences')
+    ->name('work-experiences.')
+    ->middleware(AuthenticateMiddleware::class)
+    ->group(function () {
+        Route::get('/create', [WorkExperienceController::class, 'create'])
+            ->name('create');
 
-    Route::post('/store', [WorkExperienceController::class, 'store'])
-        ->name('store');
-});
+        Route::post('/store', [WorkExperienceController::class, 'store'])
+            ->name('store');
+    });
 
-Route::view('/dashboard', 'dashboard')->name('dashboard');
+Route::view('/dashboard', 'dashboard')
+    ->name('dashboard')
+    ->middleware(AuthenticateMiddleware::class);
 
 Route::get('/logout', [UserController::class, 'logout'])
     ->name('logout');
