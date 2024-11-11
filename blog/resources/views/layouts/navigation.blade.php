@@ -17,13 +17,8 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs()">
+                    <x-nav-link :href="route('posts.create')" :active="request()->routeIs('posts.create')">
                         {{ __('Create Post') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs()">
-                        {{ __('View all your posts') }}
                     </x-nav-link>
                 </div>
             </div>
