@@ -23,6 +23,7 @@ Route::prefix('/users')->name('users.')->group(function () {
     //     return 'User Store';
     // })->name('store');
 
+
     Route::post('/login', [UserController::class, 'redirectlogin'])->name('redirectlogin');
 
     Route::post('/authlogin', [UserController::class, 'authlogin'])->name('authlogin');
@@ -69,3 +70,9 @@ Route::prefix('/table')->group(function () {
 Route::get('/logout', [UserController::class, 'logout'], 'logout')->name('logout');
 
 Route::view('/dashboard', 'dashboard')->name('dashboard')->middleware(authenticateMiddleware::class);
+
+Route::get('/profile', [UserController::class, 'profile'])
+    ->name('profile');
+    
+Route::post('/profile', [UserController::class, 'update'])
+    ->name('profile.update');

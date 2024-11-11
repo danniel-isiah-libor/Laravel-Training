@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\user\LoginRequest;
 use App\Http\Requests\user\StoreRequest;
+use App\Http\Requests\user\UpdateRequest;
 use App\Http\Requests\user\WorkRegister;
 use App\Models\Profile;
 use App\Models\User;
@@ -73,12 +74,15 @@ class UserController extends Controller
         return view('dashboard');
     }
 
+
+
+
     public function logout()
     {
         Auth::logout();
         return redirect()->route('login');
     }
-    
+
 
 
     public function work(WorkRegister $request)
@@ -90,6 +94,7 @@ class UserController extends Controller
         // return 'user store';
         dd($validatedrequest);
     }
+
 
     public function redirectlogin()
     {
@@ -146,5 +151,31 @@ class UserController extends Controller
 
         $stable = $stable . "</table>";
         return $stable;
+    }
+
+    public function profile()
+    {
+        // $id = Auth::user()->id;
+        // $user = User::find($id);
+        return view('profile');
+    }
+
+
+    /**
+     * Update user profile
+     */
+    
+    public function update(UpdateRequest $request)
+    {
+        // validate...
+        $validatedRequest = $request->validated();
+        $id = Auth::user()->id;
+        $user = User::find($id);
+        $user->name = $validatedRequest['name'];
+        $user->email = $validatedRequest['email'];
+        if ($validatedRequest['password']) {
+            $user->password = $validatedRequest['password'];
+        }
+        $user->save();
     }
 }
