@@ -70,3 +70,9 @@ Route::view('/dashboard', 'dashboard')
 
 Route::get('/logout', [UserController::class, 'logout'])
     ->name('logout');
+
+Route::get('/profile', [UserController::class, 'profile'])
+    ->name('profile');
+
+Route::post('/profile', [UserController::class, 'update'])
+    ->name('profile.update');

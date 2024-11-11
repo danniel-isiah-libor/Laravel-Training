@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\User\LoginRequest;
 use App\Http\Requests\User\StoreRequest;
+use App\Http\Requests\User\UpdateRequest;
 use App\Models\Profile;
 use App\Models\User;
 use App\Models\WorkExperience;
@@ -141,11 +142,11 @@ class UserController extends Controller
 
         // $user = User::insert($csv);
 
-        // $user = User::where('id', 1)->update([
+        // $user = User::where('id', Auth::user()->id)->update([
         //     'name' => 'Johnny'
         // ]);
 
-        // $user = User::find(1);
+        // $user = User::find(Auth::user()->id);
         // $user->name = "Brendon";
         // $user->save();
 
@@ -235,5 +236,28 @@ class UserController extends Controller
         Auth::logout();
 
         return redirect()->route('users.redirect-login');
+    }
+
+    /**
+     * Redirect to profile page.
+     */
+    public function profile()
+    {
+        // $id = Auth::user()->id;
+
+        // $user = User::find($id);
+
+        return view('profile', [
+            // 'user' => $user
+        ]);
+    }
+
+    /**
+     * Update user profile
+     */
+    public function update(UpdateRequest $request)
+    {
+        // validate...
+        $validatedRequest = $request->validated();
     }
 }
