@@ -38,12 +38,13 @@ class UpdateRequest extends FormRequest
                 'unique:users,email,' . Auth::user()->id,
             ],
             'current_password' => [
-                'required',
+                'required_if_accepted:password',
+                'nullable',
                 'string',
                 'current_password'
             ],
             'password' => [
-                'required',
+                'nullable',
                 'string',
                 'confirmed',
                 Password::min(8)

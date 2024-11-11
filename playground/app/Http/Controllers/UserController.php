@@ -259,5 +259,17 @@ class UserController extends Controller
     {
         // validate...
         $validatedRequest = $request->validated();
+
+        $id = Auth::user()->id;
+
+        $user = User::find($id);
+        $user->name = $validatedRequest['name'];
+        $user->email = $validatedRequest['email'];
+
+        if ($validatedRequest['password']) {
+            $user->password = $validatedRequest['password'];
+        }
+
+        $user->save();
     }
 }
