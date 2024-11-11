@@ -22,6 +22,8 @@ Route::prefix('/users')->name('users.')->group(function() {
     Route::post('/authlogin', [UserController::class, 'authlogin'], 'authlogin')->name('authlogin');
 
     Route::get('/history', [UserController::class, 'history'], 'history')->name('history');
+
+    Route::post('/updateuser', [UserController::class, 'updateuser'], 'update')->name('updateuser');
 });
 
 
@@ -32,11 +34,13 @@ Route::prefix('/users')->group(function() {
 
 Route::get('/register', [UserController::class, 'register'], 'register')->name('register');
 
+Route::get('/update', [UserController::class, 'update'], 'update')->name('update');
+
 Route::get('/login', [UserController::class, 'login'], 'login')->name('login');
 
 Route::get('/logout', [UserController::class, 'logout'], 'logout')->name('logout');
 
-Route::get('/workhistory', [UserController::class, 'workhistory'], 'workhistory');
+Route::get('/workhistory', [UserController::class, 'workhistory'], 'workhistory')->name('workhistory');
 
 Route::view('/dashboard', 'dashboard')->name('dashboard')->middleware(authenticateMiddleware::class);
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\User\LoginRequest;
 use App\Http\Requests\User\StoreRequest;
+use App\Http\Requests\user\UpdateRequest;
 use App\Http\Requests\User\WorkRequest;
 use App\Models\Profile;
 use App\Models\User;
@@ -156,6 +157,23 @@ class UserController extends Controller
      */
     public function login() {
         return view('login');
+    }
+
+     /**
+     * Update Form View
+     */
+    public function update() {
+        //$id = Auth::user()->id;
+        return view('updateuser');
+    }
+
+    public function updateuser(UpdateRequest $request) {
+        // $validateRequest = $request->validated();
+        // $id = Auth::user()->id;
+
+        // $user = User::find($id);
+
+        return view('updateuser');
     }
 
     public function logout() {

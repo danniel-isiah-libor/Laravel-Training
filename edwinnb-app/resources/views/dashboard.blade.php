@@ -6,8 +6,9 @@
             {{ auth()->user()->email }}
         <br>
         <br>
-
-
+        <a href="{{ route('update')}}" class="btn btn-danger">Update Profile</a>
+        <br>
+        <br>
         <a href="{{ route('logout') }}" class="btn btn-danger">Log out</a>
     </div>
     
