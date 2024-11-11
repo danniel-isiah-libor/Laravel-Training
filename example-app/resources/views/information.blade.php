@@ -5,7 +5,7 @@
             @csrf
             <h1>MY INFORMATION</h1>
             
-            <x-form.input label="LastName" type="text" name="lastName"/>
+            <x-form.input label="LastName" type="text" name="lastName" />
             <br>
             <x-form.input label="FirstName" type="text" name="firstName"/>
             <br>

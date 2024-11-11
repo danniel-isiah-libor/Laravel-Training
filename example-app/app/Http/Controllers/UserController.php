@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\User\Information;
 use App\Http\Requests\User\LoginRequest;
 use App\Http\Requests\User\StoreRequest;
+use App\Http\Requests\User\UpdateRequest;
 // use App\Http\Requests\User\WorkExperience;
 use App\Models\Profile;
 use App\Models\User;
@@ -296,6 +297,35 @@ class UserController extends Controller
     }
 //end
 
+//start
+    public function redirectUpdateInformation()
+    {
+        return view('updateInformation'); 
+    }
+
+    public function updateInformation(UpdateRequest $request)
+    {
+        // $validatedRequest = $request->validated(); 
+        // dd($validatedRequest);
+        
+        // dd($request->all()); 
+        $validatedRequest = $request->validated(); 
+        // dd($request->all()); 
+
+        $id = Auth::user()->id;
+
+        $user = User::find($id);
+        $user->name =  $validatedRequest['name'];
+        $user->email =  $validatedRequest['email'];
+        
+        if($validatedRequest['password'])
+        {
+            $user->password =  $validatedRequest['password'];
+        }
+
+        $user->save();
+    }
+//end
 
 }
 

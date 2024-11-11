@@ -65,6 +65,13 @@ Route::get('/logout', [UserController::class, 'logout'])
 //end
 
 
+//start
+Route::get('/updateInformation', [UserController::class, 'redirectUpdateInformation'])
+->name('users.redirect-update');
+
+Route::post('/updateInformation', [UserController::class, 'updateInformation'])
+->name('users.update-Info');
+//end
 
 
 

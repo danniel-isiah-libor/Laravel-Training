@@ -2,11 +2,11 @@
     <!-- The biggest battle is the war against ignorance. - Mustafa Kemal Atatürk -->
 </div> --}}
 
-@props(['name'])
+@props(['name','value'=> null])
 
 <label for="name" class="form-label">{{ $label }}:</label>
 <input style="@error($name) border: 1px solid red @enderror" type="{{ $type }}" name="{{ $name }}"
-    class="form-control" value="{{ old($name) }}">
+    class="form-control" value="{{ old($name) ?? $value}}">
 
 {{-- <input type="{{ $type }}" name="{{ $name }}" class="form-control" value="{{ old($name) }}"> --}}
 
