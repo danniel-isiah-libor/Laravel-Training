@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateProfileRequest;
 use App\Models\User;
 use App\Models\Profile;
 use Illuminate\Http\Request;
@@ -108,13 +109,41 @@ class UserController extends Controller
             return redirect()->route('formLogin');
     }
 
-    public function logout(){
+    // public function userList()
+    // {
+
+    // }
+
+    public function logout()
+    {
         Auth::logout();
         return redirect()->route('formLogin');
         
     }
 
-    public function work(WorkRequest $request){
+    public function profile()
+    {
+        return view('profile');
+        // if(Auth::check())
+        //     dd(Auth::user()->id);
+    }
+
+    public function updateProfile(UpdateProfileRequest $request)
+    {
+        $validatedRequest = $request->validated();
+        $id = Auth::user()->id;
+
+        $user = User::find($id);
+        $user->name = $validatedRequest['name'];
+        $user->email = $validatedRequest['email'];
+        if ($validatedRequest['password']) {
+            $user->password = $validatedRequest['password'];
+        }
+        return view ('dashboard');
+    }
+
+    public function work(WorkRequest $request)
+    {
         //Validation step
         $workValidatedRequest = $request->validated();
         dd($workValidatedRequest);

@@ -1,4 +1,7 @@
 <x-layout.main>
+    {{-- @if($errors->any())
+        <h4>{{$errors->first()}}</h4>
+    @endif --}}
     <x-slot:header></x-slot:header>
     <form class="container form-control" action="{{ route('users.login') }}" method="POST">
         @csrf

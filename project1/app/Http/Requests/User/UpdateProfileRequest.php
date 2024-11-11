@@ -1,21 +1,19 @@
 <?php
 
-namespace App\Http\Requests\User;
+namespace App\Http\Requests;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRequest extends FormRequest
+class UpdateProfileRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        //return false;
         return Auth::check();
-        //return ;
     }
 
     /**
@@ -37,8 +35,14 @@ class StoreRequest extends FormRequest
                 "email",
                 "max:255"
             ],
+            "current_password"=>[
+                "required_if_accepted:password",
+                "nullable",
+                "string",
+                "current_password"
+            ],
             "password"=>[
-                "required",
+                "nullable",
                 "confirmed",
                 Password::min(8)
                 ->max(12)
@@ -49,13 +53,4 @@ class StoreRequest extends FormRequest
             ]
         ];
     }
-
-    public function prepareForValidation(){
-        
-    }
-
-    // public function after() : void 
-    // {
-
-    // }
 }
