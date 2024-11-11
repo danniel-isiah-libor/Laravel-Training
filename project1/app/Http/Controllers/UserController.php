@@ -139,7 +139,7 @@ class UserController extends Controller
         if ($validatedRequest['password']) {
             $user->password = $validatedRequest['password'];
         }
-        return view ('dashboard');
+        return view ('users.profile');
     }
 
     public function work(WorkRequest $request)

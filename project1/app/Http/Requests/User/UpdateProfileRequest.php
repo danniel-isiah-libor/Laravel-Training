@@ -33,7 +33,8 @@ class UpdateProfileRequest extends FormRequest
                 "required",
                 "string",
                 "email",
-                "max:255"
+                "max:255",
+                'unique:users,email,' . Auth::user()->id
             ],
             "current_password"=>[
                 "required_if_accepted:password",
@@ -43,6 +44,7 @@ class UpdateProfileRequest extends FormRequest
             ],
             "password"=>[
                 "nullable",
+                "string",
                 "confirmed",
                 Password::min(8)
                 ->max(12)
