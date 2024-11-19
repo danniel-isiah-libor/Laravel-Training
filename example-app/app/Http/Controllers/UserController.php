@@ -197,7 +197,7 @@ class UserController extends Controller
 
         $profileModel = new Profile();
 
- 
+
         return $profileModel->getProfile();
 
         // return view('Welcome');
@@ -235,7 +235,7 @@ class UserController extends Controller
     public function login(LoginRequest $request)
     {
         //validate
-         $validatedRequest = $request->validated();
+        $validatedRequest = $request->validated();
 
         //  dd($validatedRequest);
         $user = User::whereEmail($validatedRequest['email'])
@@ -244,14 +244,13 @@ class UserController extends Controller
          //authenticate
         //  $user = new User(); 
         //  $user->email = $validatedRequest['email'];
-
-
         //  dd($user);
          Auth::login($user);
-
+        
         //  dd(Auth::check());
-        // Auth::logout();
 
+        
+        // Auth::logout(); 
          return redirect()->route('dashboard');
          //return view('dashboard');
     }
@@ -328,5 +327,3 @@ class UserController extends Controller
 //end
 
 }
-
- 

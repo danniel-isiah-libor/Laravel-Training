@@ -14,7 +14,7 @@
              <h3 class="fw-bold text-warning">UPDATE INFORMATION</h3>
              <hr>
              {{-- {{ auth()->user()->email }} --}}
-            <x-form.input label="Name" value="" name="name" :value="auth()->user()->name"/>
+            <x-form.input label="Name"   name="name" :value="auth()->user()->name"/>
             
             <br>
             <x-form.input label="Email" type="email" name="email" :value="auth()->user()->email"/> 

@@ -59,6 +59,7 @@ Route::post('/information', [UserController::class, 'information'])
 Route::view('/dashboard', 'dashboard')
 ->name('dashboard')
 ->middleware(AuthenticateMiddleware::class);
+
 Route::get('/logout', [UserController::class, 'logout'])
 ->name('logout');
 
@@ -72,9 +73,6 @@ Route::get('/updateInformation', [UserController::class, 'redirectUpdateInformat
 Route::post('/updateInformation', [UserController::class, 'updateInformation'])
 ->name('users.update-Info');
 //end
-
-
-
 
 
 

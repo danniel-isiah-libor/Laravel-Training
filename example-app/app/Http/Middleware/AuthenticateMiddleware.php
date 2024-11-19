@@ -18,7 +18,7 @@ class AuthenticateMiddleware
     {
         if(Auth::check())
         {
-            return $next($request);
+            return $next($request); 
         }else
         {
             return redirect()->route('users.redirect-login');
