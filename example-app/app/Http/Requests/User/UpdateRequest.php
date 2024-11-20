@@ -48,7 +48,7 @@ class UpdateRequest extends FormRequest
 
             'password' => [
                 'nullable',
-                'required',
+                // 'required',
                 'string',
                 'confirmed',
                 Password::min(8)

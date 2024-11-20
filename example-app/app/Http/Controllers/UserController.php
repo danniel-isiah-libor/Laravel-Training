@@ -127,7 +127,7 @@ class UserController extends Controller
     // $validatedRequest = $request->validated();
     // $user = User::created($validatedRequest);
 
-    //saving 1
+    //saving 1************************************************
     // $user = User::create([
     //     'name' => 'Jm',
     //     'email' => 'jm@gmail.com',
@@ -136,7 +136,7 @@ class UserController extends Controller
     
     // dd($user);
 
-    //saving 2
+    //saving 2**********************************************
     // $user = new User();
     // $user->name = 'james';
     // $user->email = 'james@gmail.com';
@@ -144,7 +144,7 @@ class UserController extends Controller
     // $user->save();
     // dd($user);
     
-    //saving 3 for bulking like csv
+    //saving 3 for bulking like csv *************************
    
         // $csv =[
         //     [
@@ -162,17 +162,17 @@ class UserController extends Controller
         // $user = User::insert($csv);
 
 
-        //update 1 for complecated query
+        //update 1 for complecated query*************************************
         // $user = User::where('id', 1)->update([
         //     'name' => 'James Updated'
         // ]);
 
-        //update 2
+        //update 2***********************************************************
         // $user = User::find(1);
         // $user->name = "Brendon";
         // $user->save();
         
-        //Delete
+        //Delete*************************************************************
         // $user = User::find(44)->delete();
         // $user = User::findOrFail(55)->delete();
 
